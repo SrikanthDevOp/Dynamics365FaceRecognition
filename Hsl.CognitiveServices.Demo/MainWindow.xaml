@@ -1,0 +1,52 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Hsl.CognitiveServices.Demo"
+        xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="Hsl.CognitiveServices.Demo.MainWindow"
+        mc:Ignorable="d"
+        Icon="brain.ico"
+        Title="Cognitive Services" Style="{StaticResource windowStyle}" Height="522.131" Width="811.885">
+    <Grid Margin="0,20,0,0">
+        <DockPanel Margin="0,-15,-0.4,-0.2">
+            <DockPanel.Background>
+                <ImageBrush  ImageSource="Images\mscogservices.jpg"></ImageBrush>
+            </DockPanel.Background>
+            <Menu Name="menu1" VerticalAlignment="Top" Visibility="Visible" DockPanel.Dock="Top" Loaded="menu_Loaded">
+                <MenuItem Header="Vision" Name="visionMenu">
+                    <MenuItem Header="Face API" Name="faceApI">
+                        <MenuItem Header="Face Detection" Name="faceDetection">
+                        </MenuItem>
+                        <MenuItem Header="Face Identification" Name="faceIdentification"  Click="FaceIdentify_Click">
+                        </MenuItem>
+                        <MenuItem Header="Similar Face Search" Name="similarFaceSearch">
+                        </MenuItem>
+                        <MenuItem Header="Face Grouping" Name="faceGrouping">
+                        </MenuItem>
+                    </MenuItem>
+                    <MenuItem Header="Computer Vision API" Name="compVision">
+                        <MenuItem Header="Analyze Images" Name="Analyze">
+                        </MenuItem>
+                    </MenuItem>
+                </MenuItem>
+                <MenuItem Header="Knowledge" Name="knowledgeMenu">
+                </MenuItem>
+                <MenuItem Header="Speech" Name="SpeechMenu">
+                </MenuItem>
+                <MenuItem Header="Search" Name="searchMenu" >
+                </MenuItem>
+                <MenuItem Header="Language" Name="languageMenu" >
+                </MenuItem>
+            </Menu>
+            <Border Width="800" Margin="0,0,0,2" BorderThickness="2px" BorderBrush="Gray" >
+                <DockPanel  Height="467" Width="800" Name="dockPanel" Style="{StaticResource dockPanelStyle}" Visibility="Hidden" HorizontalAlignment="Stretch" 
+                    VerticalAlignment="Top"  ScrollViewer.VerticalScrollBarVisibility="Auto" Margin="0,1,0,-13">
+                </DockPanel>
+            </Border>
+        </DockPanel>
+
+    </Grid>
+
+</Window>
+

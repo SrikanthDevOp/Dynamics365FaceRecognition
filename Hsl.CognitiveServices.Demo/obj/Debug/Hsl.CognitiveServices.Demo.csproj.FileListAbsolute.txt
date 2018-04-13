@@ -1,0 +1,55 @@
+D:\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\bin\Debug\Hsl.CognitiveServices.Demo.exe.config
+D:\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\bin\Debug\Hsl.CognitiveServices.Demo.exe
+D:\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\bin\Debug\Hsl.CognitiveServices.Demo.pdb
+D:\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\obj\Debug\Hsl.CognitiveServices.Demo.csprojResolveAssemblyReference.cache
+D:\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\obj\Debug\MainWindow.g.cs
+D:\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\obj\Debug\UserControl\D365Login.g.cs
+D:\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\obj\Debug\App.g.cs
+D:\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\obj\Debug\Hsl.CognitiveServices.Demo_MarkupCompile.cache
+D:\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\obj\Debug\Hsl.CognitiveServices.Demo_MarkupCompile.lref
+D:\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\obj\Debug\App.baml
+D:\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\obj\Debug\MainWindow.baml
+D:\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\obj\Debug\UserControl\D365Login.baml
+D:\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\obj\Debug\Hsl.CognitiveServices.Demo.g.resources
+D:\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\obj\Debug\Hsl.CognitiveServices.Demo.Properties.Resources.resources
+D:\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\obj\Debug\Hsl.CognitiveServices.Demo.csproj.GenerateResource.Cache
+D:\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\obj\Debug\Hsl.CognitiveServices.Demo.csproj.CoreCompileInputs.cache
+D:\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\obj\Debug\Hsl.CognitiveServices.Demo.exe
+D:\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\obj\Debug\Hsl.CognitiveServices.Demo.pdb
+C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\obj\Debug\MainWindow.g.cs
+C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\obj\Debug\UserControl\D365Login.g.cs
+C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\obj\Debug\UserControl\FaceIdentify.g.cs
+C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\obj\Debug\App.g.cs
+C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\obj\Debug\Hsl.CognitiveServices.Demo_MarkupCompile.cache
+C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\obj\Debug\Hsl.CognitiveServices.Demo_MarkupCompile.lref
+C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\bin\Debug\Hsl.CognitiveServices.Demo.exe.config
+C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\bin\Debug\Hsl.CognitiveServices.Demo.exe
+C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\bin\Debug\Hsl.CognitiveServices.Demo.pdb
+C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Crm.Sdk.Proxy.dll
+C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.IdentityModel.Clients.ActiveDirectory.dll
+C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.IdentityModel.Clients.ActiveDirectory.Platform.dll
+C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Xrm.Sdk.Deployment.dll
+C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Xrm.Sdk.dll
+C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Xrm.Sdk.Workflow.dll
+C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Xrm.Tooling.Connector.dll
+C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Xrm.Tooling.CrmConnectControl.dll
+C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Xrm.Tooling.Ui.Styles.dll
+C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Xrm.Tooling.WebResourceUtility.dll
+C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Crm.Sdk.Proxy.xml
+C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.IdentityModel.Clients.ActiveDirectory.xml
+C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.IdentityModel.Clients.ActiveDirectory.Platform.xml
+C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Xrm.Sdk.xml
+C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Xrm.Sdk.Deployment.xml
+C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Xrm.Sdk.Workflow.xml
+C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Xrm.Tooling.Connector.xml
+C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Xrm.Tooling.CrmConnectControl.xml
+C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Xrm.Tooling.WebResourceUtility.xml
+C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\obj\Debug\App.baml
+C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\obj\Debug\MainWindow.baml
+C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\obj\Debug\UserControl\D365Login.baml
+C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\obj\Debug\UserControl\FaceIdentify.baml
+C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\obj\Debug\Hsl.CognitiveServices.Demo.g.resources
+C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\obj\Debug\Hsl.CognitiveServices.Demo.Properties.Resources.resources
+C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\obj\Debug\Hsl.CognitiveServices.Demo.csproj.GenerateResource.Cache
+C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\obj\Debug\Hsl.CognitiveServices.Demo.exe
+C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\obj\Debug\Hsl.CognitiveServices.Demo.pdb
