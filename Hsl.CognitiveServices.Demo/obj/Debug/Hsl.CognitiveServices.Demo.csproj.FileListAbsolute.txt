@@ -53,3 +53,12 @@ C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.D
 C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\obj\Debug\Hsl.CognitiveServices.Demo.csproj.GenerateResource.Cache
 C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\obj\Debug\Hsl.CognitiveServices.Demo.exe
 C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\obj\Debug\Hsl.CognitiveServices.Demo.pdb
+D:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Hsl.CognitiveServices.Demo.exe.config
+D:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\obj\Debug\Hsl.CognitiveServices.Demo.exe
+D:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\obj\Debug\Hsl.CognitiveServices.Demo.pdb
+D:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\obj\Debug\Hsl.CognitiveServices.Demo.csprojResolveAssemblyReference.cache
+D:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\obj\Debug\MainWindow.g.cs
+D:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\obj\Debug\UserControl\D365Login.g.cs
+D:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\obj\Debug\App.g.cs
+D:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\obj\Debug\Hsl.CognitiveServices.Demo_MarkupCompile.cache
+D:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\obj\Debug\Hsl.CognitiveServices.Demo_MarkupCompile.lref

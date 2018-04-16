@@ -4,33 +4,54 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Hsl.CognitiveServices.Demo.UserControl"
-             mc:Ignorable="d" Height="291.489" Width="397.872">
+             mc:Ignorable="d" Height="291.489" Width="397.872" Background="White">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="29*"/>
-            <ColumnDefinition Width="31*"/>
-        </Grid.ColumnDefinitions>
-
-        <Grid Name="gridFaceAPIKeyManagement" Visibility="Visible" Margin="0,58,0,79" Grid.ColumnSpan="2">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="287*"/>
+            <RowDefinition Height="4*"/>
+        </Grid.RowDefinitions>
+        <Button Grid.Row="0" Name="btnClose" Width="20" Content="x" TextBlock.Foreground="Gray"   TextBlock.FontSize="15" BorderBrush="White"  Background="White" IsCancel="True" Click="BtnClose_Click"  Margin="368,16,10,248.354" RenderTransformOrigin="5.724,0.531"/>
+        <Grid Grid.RowSpan="2">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="100"/>
-                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="29*"/>
+                <ColumnDefinition Width="31*"/>
             </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="33"/>
-                <RowDefinition Height="33"/>
-                <RowDefinition Height="33"/>
-                <RowDefinition Height="33"/>
-            </Grid.RowDefinitions>
-            <Label Grid.Column="0"  Grid.Row="0" Margin="2,-4,-195,6" Background="DarkGray" Content="Face API Key Management" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2"/>
-            <Label Grid.Column="0" Grid.Row="1" Content="Subscription Key:" Margin="3,0,0,0"/>
-            <TextBox Grid.Column="1" Height="25" Grid.Row="1" Margin="0,3,-188,4" />
-            <Label Grid.Column="0" Content="Endpoint :" Margin="3,0,0,8" HorizontalAlignment="Left" Width="96" Grid.Row="2"/>
-            <TextBox Grid.Column="1" Height="25" Grid.Row="2" Margin="0,0,-190,8"/>
-            <Button Name="btnSaveFaceSubScription" IsEnabled="False" Background="White" BorderBrush="Gray" Content="Save" Grid.Row="3" Margin="7,14,94,-5" Grid.ColumnSpan="2"/>
-            <Button Name="btnNextFaceSubScription" Background="White" BorderBrush="Gray" Content="Next" Margin="23,14,-23,-5" RenderTransformOrigin="1.928,2.963" Grid.Column="1" Grid.Row="3"/>
-        </Grid>
-        <Grid Name="gridFaceIdentify" Visibility="Hidden" Grid.ColumnSpan="2">
+
+            <Grid Name="gridFaceAPIKeyManagement" Visibility="Hidden" Margin="0,58,0,79" Grid.ColumnSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="100"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="33"/>
+                    <RowDefinition Height="33"/>
+                    <RowDefinition Height="33"/>
+                    <RowDefinition Height="33"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Column="0"  Grid.Row="0" Margin="2,-4,-195,6" Background="DarkGray" Content="Face API Key Management" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2"/>
+                <Label Grid.Column="0" Grid.Row="1" Content="Subscription Key:" Margin="3,0,0,0"/>
+                <TextBox Grid.Column="1" Height="25" Grid.Row="1" Margin="0,4,-189,5" Name="txtSubscriptionKey" />
+                <Label Grid.Column="0" Content="Endpoint :" Margin="3,0,0,8" HorizontalAlignment="Left" Width="96" Grid.Row="2"/>
+                <TextBox Grid.Column="1" Height="25" Grid.Row="2" Margin="0,0,-188,8" Name="txtEndpoint"/>
+                <Button Name="btnSaveFaceSubScription" IsEnabled="False" Background="White" BorderBrush="Gray" Content="Save" Grid.Row="3" Margin="7,14,94,-5" Grid.ColumnSpan="2"/>
+                <Button Name="btnNextFaceSubScription" Background="White" BorderBrush="Gray" Content="Next" Margin="23,14,-23,-5" RenderTransformOrigin="1.928,2.963" Grid.Column="1" Grid.Row="3" Click="BtnNextKeyManagement_Click"/>
+            </Grid>
+            <Grid Name="gridFaceIdentify" Visibility="Visible" Grid.ColumnSpan="2" Margin="0,58,0,79">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="250"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="38*"/>
+                    <RowDefinition Height="48*"/>
+                    <RowDefinition Height="50*"/>
+                    <RowDefinition Height="18*"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Label Grid.Column="0"  Grid.Row="0" Margin="2,-4,-146,6" Background="DarkGray" Content="Face API Model Training with Dynamics 365 Contacts" />
+                <TextBlock Grid.Row="1" TextWrapping="WrapWithOverflow"  Grid.RowSpan="2" Margin="0,0,-148,0"><Run/><LineBreak/><Run Text="Training is required to recognize the faces of contacts in Dynamics 365. This facilitates the Face API model to detect and identify the Dynamics 365 contacts when you upload any image for identification."/></TextBlock>
+                <Button Name="btnTrain" Background="White" BorderBrush="Gray" Content="Train"  Grid.Row="4" Click="BtnTrain_Click" Margin="301,44,-135,-68.068" HorizontalAlignment="Right" Width="85"/>
+                <ProgressBar Visibility="Hidden" Name="trainProgressBar" Margin="4,41,-142,7" Grid.Row="2" Grid.RowSpan="2"/>
+            </Grid>
         </Grid>
     </Grid>
 </UserControl>
