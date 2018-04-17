@@ -82,6 +82,7 @@ namespace Hsl.CognitiveServices.Demo.UserControl
             {
                 string strAuthType = "Office365";
                 string strServerUrl = txtServerOnline.Text;
+
                 AppendOrgnaisationName(ref strServerUrl);
                 string strUserName = txtUserNameOnline.Text;
                 string strPassword = txtPasswordOnline.Password.ToString();
@@ -89,7 +90,12 @@ namespace Hsl.CognitiveServices.Demo.UserControl
                 string strErrorMessage;
                 if (CrmHelper.ConnectUsingConnectionString(strConnectionString, out strErrorMessage))
                 {
-
+                    var parentWindow = Window.GetWindow(this) as MainWindow;
+                    parentWindow.dockPanel.Children.Clear();
+                    FaceIdentify cntrlFaceIdentify = new FaceIdentify();
+                    cntrlFaceIdentify.CloseInitiated+= new Close(parentWindow.ClosePanel);
+                    parentWindow.dockPanel.Children.Add(cntrlFaceIdentify);
+                    parentWindow.dockPanel.Visibility = Visibility.Visible;
                 }
                 else
                 {
@@ -118,7 +124,12 @@ namespace Hsl.CognitiveServices.Demo.UserControl
                 string strErrorMessage;
                 if (CrmHelper.ConnectUsingConnectionString(strConnectionString, out strErrorMessage))
                 {
-
+                    var parentWindow = Window.GetWindow(this) as MainWindow;
+                    parentWindow.dockPanel.Children.Clear();
+                    FaceIdentify cntrlFaceIdentify = new FaceIdentify();
+                    cntrlFaceIdentify.CloseInitiated += new Close(parentWindow.ClosePanel);
+                    parentWindow.dockPanel.Children.Add(cntrlFaceIdentify);
+                    parentWindow.dockPanel.Visibility = Visibility.Visible;
                 }
                 else
                 {
@@ -135,17 +146,20 @@ namespace Hsl.CognitiveServices.Demo.UserControl
             }
             if (serverUrl.Contains("https://"))
             {
+                CrmHelper._organisationUrl = serverUrl;
                 serverUrl += serverUrl.Substring(8).Split('.').First();
             }
             else
             {
                 if (serverUrl.Contains("http://"))
                 {
+                    CrmHelper._organisationUrl = serverUrl;
                     serverUrl += serverUrl.Substring(7).Split('.').First();
                 }
                 else
                 {
                     serverUrl = "https://" + serverUrl + "/";
+                    CrmHelper._organisationUrl = serverUrl;
                     serverUrl += serverUrl.Substring(8).Split('.').First();
                 }
             }

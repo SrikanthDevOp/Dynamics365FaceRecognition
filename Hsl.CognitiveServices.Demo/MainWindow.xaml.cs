@@ -37,7 +37,7 @@ namespace Hsl.CognitiveServices.Demo
             dockPanel.Visibility = Visibility.Visible;
         }
 
-        private void ClosePanel(object sender,EventArgs e)
+        public void ClosePanel(object sender,EventArgs e)
         {
             dockPanel.Children.Clear();
             dockPanel.Visibility = Visibility.Hidden;

@@ -13,7 +13,9 @@ namespace Hsl.CognitiveServices.Demo
 {
     public static class CrmHelper
     {
-        public static OrganizationServiceProxy _serviceProxy = null;
+        public static string  _organisationUrl{get;set;}
+
+        public static OrganizationServiceProxy _serviceProxy;
         /// <summary>
         /// Retrieve Dynamics 365 Service Proxy using Dynamics 365 Connection String
         /// </summary>
