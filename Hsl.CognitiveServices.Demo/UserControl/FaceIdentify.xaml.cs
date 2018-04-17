@@ -224,27 +224,38 @@ namespace Hsl.CognitiveServices.Demo.UserControl
         }
         #endregion
 
-        private async void CreatePersonGroup(List<Contact> lstContacts)
+        private void CreatePersonGroup(List<Contact> lstContacts)
         {
             try
             {
                 using (var faceServiceClient = new FaceServiceClient(this.strSubscriptionKey, this.strEndpoint))
                 {
-                    bool isGroupExists = await CheckIfGroupExists();
+                    bool isGroupExists = CheckIfGroupExists();
                     if (!isGroupExists)
                     {
-                        await faceServiceClient.CreatePersonGroupAsync(this.PersonGroupId, "Dynamics 365 Contacts");
+                        Task taskCreatePersonGroup = Task.Run(async () => await faceServiceClient.CreatePersonGroupAsync(this.PersonGroupId, "Dynamics 365 Contacts"));
                     }
 
-                    lstContacts.ForEach(async contact =>
+                    lstContacts.ForEach(contact =>
                     {
-                        CreatePersonResult person = await faceServiceClient.CreatePersonAsync(
+                        Task<CreatePersonResult> taskCreatePerson = Task.Run(async () => await faceServiceClient.CreatePersonAsync(
                             // Id of the PersonGroup that the person belonged to
                             this.PersonGroupId,
-                            contact.FullName);
+                            contact.FullName));
+
+                        while (!taskCreatePerson.IsCompleted)
+                        {
+                            taskCreatePerson.Wait();
+                        }
+                        CreatePersonResult person = taskCreatePerson.Result as CreatePersonResult;
                         using (Stream stream = new MemoryStream(contact.ImageBytes))
                         {
-                            AddPersistedFaceResult persistedFaces = await faceServiceClient.AddPersonFaceAsync(PersonGroupId, person.PersonId, stream);
+                            Task<AddPersistedFaceResult> taskPersisted =Task.Run(async()=> await faceServiceClient.AddPersonFaceAsync(PersonGroupId, person.PersonId, stream));
+                            while(!taskPersisted.IsCompleted)
+                            {
+                                taskPersisted.Wait();
+                            }
+                            AddPersistedFaceResult persistedFaces = taskPersisted.Result as AddPersistedFaceResult;
                             Persons.Add(new Person()
                             {
                                 Name = contact.FullName,
@@ -252,27 +263,32 @@ namespace Hsl.CognitiveServices.Demo.UserControl
                                 PersistedFaceIds = new Guid[] { persistedFaces.PersistedFaceId }
                             });
                         }
-
                     });
-                    await faceServiceClient.TrainPersonGroupAsync(this.PersonGroupId);
-                    TrainingStatus trainingStatus = null;
+                    Task taskTrainPerson = Task.Run(async () => await faceServiceClient.TrainPersonGroupAsync(this.PersonGroupId));
+                    while (!taskTrainPerson.IsCompleted)
+                    {
+                        taskTrainPerson.Wait();
+                    }
                     while (true)
                     {
                         try
                         {
-                            trainingStatus = await faceServiceClient.GetPersonGroupTrainingStatusAsync(this.PersonGroupId);
-
-                            if (trainingStatus.Status != Status.Running)
+                            Task<TrainingStatus> taskTrainingStatus = Task.Run(async () => await faceServiceClient.GetPersonGroupTrainingStatusAsync(this.PersonGroupId));
+                            if (taskTrainingStatus.Result.Status != Status.Running)
                             {
                                 break;
                             }
+                            else
+                            {
+                                taskTrainingStatus.Wait();
+                            }
                         }
-                        catch (Exception ex)
+                        catch (FaceAPIException fEx)
                         {
                             continue;
                         }
-                        await Task.Delay(1000);
                     }
+
                 }
             }
             catch (Exception ex)
@@ -281,7 +297,7 @@ namespace Hsl.CognitiveServices.Demo.UserControl
             }
         }
 
-        private async Task<bool> CheckIfGroupExists()
+        private bool CheckIfGroupExists()
         {
             // Test whether the group already exists
             bool groupExists = false;
@@ -290,10 +306,21 @@ namespace Hsl.CognitiveServices.Demo.UserControl
                 using (var faceServiceClient = new FaceServiceClient(this.strSubscriptionKey, this.strEndpoint))
                 {
 
-                    await faceServiceClient.GetPersonGroupAsync(this.PersonGroupId);
-                    groupExists = true;
-                }
+                    Task taskGetPerson = Task.Run(async () => await faceServiceClient.GetPersonGroupAsync(this.PersonGroupId));
+                    while (true)
+                    {
+                        if (taskGetPerson.IsCompleted)
+                        {
+                            groupExists = true;
+                            break;
+                        }
+                        else
+                        {
+                            taskGetPerson.Wait();
+                        }
+                    }
 
+                }
             }
             catch (FaceAPIException ex)
             {
@@ -339,7 +366,12 @@ namespace Hsl.CognitiveServices.Demo.UserControl
                 {
                     try
                     {
-                        var faces = await faceServiceClient.DetectAsync(fStream);
+                        Task<Face[]> taskfaces = Task.Run(async()=> await faceServiceClient.DetectAsync(fStream));
+                        while(!taskfaces.IsCompleted)
+                        {
+                            taskfaces.Wait();
+                        }
+                        var faces = taskfaces.Result as Face[];
                         DrawingVisual visual = new DrawingVisual();
                         DrawingContext drawingContext = visual.RenderOpen();
                         drawingContext.DrawImage(bitmapSource,
@@ -460,7 +492,7 @@ namespace Hsl.CognitiveServices.Demo.UserControl
                         var res = identifyResult[idx];
 
                         string contactName;
-                        if (res.Candidates.Length > 0 && !Persons.Any(p => p.PersonId == res.Candidates[0].PersonId))
+                        if (res.Candidates.Length > 0 && Persons.Any(p => p.PersonId == res.Candidates[0].PersonId))
                         {
                             contactName = Persons.Where(p => p.PersonId == res.Candidates[0].PersonId).First().Name;
                             IdentifiedContacts.Add(new Contact()
@@ -488,6 +520,7 @@ namespace Hsl.CognitiveServices.Demo.UserControl
                 return false;
             }
         }
+
     }
 
     public class Contact

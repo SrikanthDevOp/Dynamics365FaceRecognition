@@ -10,7 +10,7 @@
             <RowDefinition Height="287*"/>
             <RowDefinition Height="4*"/>
         </Grid.RowDefinitions>
-        <Button Grid.Row="0" Name="btnClose" Width="20" Content="x" TextBlock.Foreground="Gray"   TextBlock.FontSize="15" BorderBrush="White"  Background="White" IsCancel="True" Click="BtnClose_Click"  Margin="368,16,10,248.354" RenderTransformOrigin="5.724,0.531"/>
+        <Button Grid.Row="0" Name="btnClose" Content="x" TextBlock.Foreground="Gray"   TextBlock.FontSize="15" BorderBrush="White"  Background="White" IsCancel="True" Click="BtnClose_Click"  Margin="362,10,10.2,251.6" RenderTransformOrigin="5.724,0.531"/>
         <Grid Grid.RowSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="29*"/>
@@ -19,8 +19,8 @@
 
             <Grid Name="gridFaceAPIKeyManagement" Visibility="Visible" Margin="0,58,0,79" Grid.ColumnSpan="2">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="100"/>
-                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="111.2"/>
+                    <ColumnDefinition Width="98.4"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="33"/>
@@ -28,13 +28,13 @@
                     <RowDefinition Height="34"/>
                     <RowDefinition Height="33"/>
                 </Grid.RowDefinitions>
-                <Label Grid.Column="0"  Grid.Row="0" Margin="2,-4,-195,6" Background="DarkGray" Content="Face API Key Management" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2"/>
-                <Label Grid.Column="0" Grid.Row="1" Content="Subscription Key:" Margin="3,0,0,0"/>
-                <TextBox Grid.Column="1" Grid.Row="1"  Height="25" Name="txtSubscriptionKey" Margin="0,2,-189,18" />
-                <Label Grid.Column="0" Content="Endpoint :" Margin="3,0,0,8" HorizontalAlignment="Left" Width="96" Grid.Row="2"/>
-                <TextBox Grid.Column="1" Grid.Row="2" Margin="0,2,-189,8" Name="txtEndpoint"/>
-                <Button Name="btnSaveFaceSubScription" IsEnabled="False" Background="White" BorderBrush="Gray" Content="Save" Grid.Row="3" Margin="7,14,94,-5" Grid.ColumnSpan="2"/>
-                <Button Name="btnNextFaceSubScription" Background="White" BorderBrush="Gray" Content="Next" Margin="23,14,-23,-5" RenderTransformOrigin="1.928,2.963" Grid.Column="1" Grid.Row="3" Click="BtnNextKeyManagement_Click"/>
+                <Label Grid.Column="0"  Grid.Row="0" Margin="2,-4,-183.8,5.6" Background="DarkGray" Content="Face API Key Management" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2"/>
+                <Label Grid.Column="0" Grid.Row="1" Content="Subscription Key:" Margin="3,0.4,1,17.4"/>
+                <TextBox Grid.Column="1" Grid.Row="1" Name="txtSubscriptionKey" Margin="4,2.4,-173.8,17.4" />
+                <Label Grid.Column="0" Content="Endpoint :" Margin="3,44.4,0,7.8" HorizontalAlignment="Left" Width="96" Grid.Row="1" Grid.RowSpan="2"/>
+                <TextBox Grid.Row="2" Margin="4,1.6,-173.8,7.8" Name="txtEndpoint" Grid.Column="1"/>
+                <Button Name="btnSaveFaceSubScription" IsEnabled="False" Background="White" BorderBrush="Gray" Content="Save" Grid.Row="3" Margin="21,14.2,95.2,-4.6" Grid.ColumnSpan="2"/>
+                <Button Name="btnNextFaceSubScription" Background="White" BorderBrush="Gray" Content="Next" Margin="24,14.2,-19.8,-4.6" RenderTransformOrigin="1.928,2.963" Grid.Column="1" Grid.Row="3" Click="BtnNextKeyManagement_Click"/>
             </Grid>
             <Grid Name="gridTrainPersonGroup" Visibility="Hidden" Grid.ColumnSpan="2" Margin="0,58,0,79">
                 <Grid.ColumnDefinitions>
