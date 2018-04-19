@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/grey_close_x.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/default.jpg")]
 
 

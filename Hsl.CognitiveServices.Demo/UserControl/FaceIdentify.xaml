@@ -4,13 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Hsl.CognitiveServices.Demo.UserControl"
-             mc:Ignorable="d" Height="291.489" Width="397.872" Background="White" BorderBrush="Gray" BorderThickness="1px">
+             mc:Ignorable="d" Height="291.489" Width="397.872" x:Name="FaceIdentificationPane"  Background="White" BorderBrush="Gray" BorderThickness="1px" >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="287*"/>
             <RowDefinition Height="4*"/>
         </Grid.RowDefinitions>
-        <Button Grid.Row="0" Name="btnClose" Content="x" TextBlock.Foreground="Gray"   TextBlock.FontSize="15" BorderBrush="White"  Background="White" IsCancel="True" Click="BtnClose_Click"  Margin="362,10,10.2,251.6" RenderTransformOrigin="5.724,0.531"/>
+        <Button Grid.Row="0" Name="btnClose" Content="x" TextBlock.Foreground="Gray"   TextBlock.FontSize="15" BorderBrush="White"  Background="White" IsCancel="True" Click="BtnClose_Click"  Margin="362,5,10,257" RenderTransformOrigin="5.724,0.531"/>
         <Grid Grid.RowSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="29*"/>
@@ -28,13 +28,13 @@
                     <RowDefinition Height="34"/>
                     <RowDefinition Height="33"/>
                 </Grid.RowDefinitions>
-                <Label Grid.Column="0"  Grid.Row="0" Margin="2,-4,-183.8,5.6" Background="DarkGray" Content="Face API Key Management" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2"/>
+                <Label Grid.Column="0"  Grid.Row="0" Margin="1,-4,-183,6" Background="DarkGray" Content="Face API Key Management" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2"/>
                 <Label Grid.Column="0" Grid.Row="1" Content="Subscription Key:" Margin="3,0.4,1,17.4"/>
                 <TextBox Grid.Column="1" Grid.Row="1" Name="txtSubscriptionKey" Margin="4,2.4,-173.8,17.4" />
                 <Label Grid.Column="0" Content="Endpoint :" Margin="3,44.4,0,7.8" HorizontalAlignment="Left" Width="96" Grid.Row="1" Grid.RowSpan="2"/>
                 <TextBox Grid.Row="2" Margin="4,1.6,-173.8,7.8" Name="txtEndpoint" Grid.Column="1"/>
-                <Button Name="btnSaveFaceSubScription" IsEnabled="False" Background="White" BorderBrush="Gray" Content="Save" Grid.Row="3" Margin="21,14.2,95.2,-4.6" Grid.ColumnSpan="2"/>
-                <Button Name="btnNextFaceSubScription" Background="White" BorderBrush="Gray" Content="Next" Margin="24,14.2,-19.8,-4.6" RenderTransformOrigin="1.928,2.963" Grid.Column="1" Grid.Row="3" Click="BtnNextKeyManagement_Click"/>
+                <Button Name="btnSaveFaceSubScription" IsEnabled="False" Background="White" BorderBrush="Gray" Content="Save" Grid.Row="3" Margin="8,14,9,-5"/>
+                <Button Name="btnNextFaceSubScription" Background="White" BorderBrush="Gray" Content="Next" Margin="4,14,0,-5" RenderTransformOrigin="1.928,2.963" Grid.Column="1" Grid.Row="3" Click="BtnNextKeyManagement_Click"/>
             </Grid>
             <Grid Name="gridTrainPersonGroup" Visibility="Hidden" Grid.ColumnSpan="2" Margin="0,58,0,79">
                 <Grid.ColumnDefinitions>
@@ -52,7 +52,55 @@
                 <Button Name="btnTrain" Background="White" BorderBrush="Gray" Content="Train"  Grid.Row="4" Click="BtnTrain_Click" Margin="262,26,-111,-50" HorizontalAlignment="Left" Width="100"/>
                 <ProgressBar Visibility="Hidden" Name="trainProgressBar" Margin="4,41,-142,7" Grid.Row="2" Grid.RowSpan="2"/>
             </Grid>
-            <Grid Name="gridIdentifyPerson" Visibility="Hidden" Grid.ColumnSpan="2" Margin="2,58,-2,79">
+
+            <Grid Name="gridIdentifyPerson" MouseLeftButtonDown="gridIdentifyPerson_MouseLeftButtonDown" Visibility="Hidden" Grid.ColumnSpan="2" Margin="0,75,18,27">
+                <ItemsControl MouseLeftButtonDown="ItemsControl_MouseLeftButtonDown" HorizontalAlignment="Center" Panel.ZIndex="999" VerticalAlignment="Center" ItemsSource="{Binding TargetFaces, ElementName=FaceIdentificationPane}" Height="{Binding MaxImageSize, ElementName=FaceIdentificationPane}" Width="{Binding MaxImageSize, ElementName=FaceIdentificationPane}">
+                    <!--<ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <Grid Background="Transparent" HorizontalAlignment="Center" VerticalAlignment="Center" Height="{Binding MaxImageSize, ElementName=FaceIdentificationPane}" Width="{Binding MaxImageSize, ElementName=FaceIdentificationPane}" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>-->
+                    <ItemsControl.ItemContainerStyle>
+                        <Style TargetType="ContentPresenter">
+                            <Setter Property="VerticalAlignment" Value="Stretch" />
+                            <Setter Property="HorizontalAlignment" Value="Stretch" />
+                        </Style>
+                    </ItemsControl.ItemContainerStyle>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Canvas MouseLeftButtonDown="canvas_MouseLeftButtonDown">
+                                <Grid  Canvas.Left="{Binding Left}" Canvas.Top="{Binding Top}" Background="#99000000" Height="14" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0, -14, 0, 0">
+                                    <TextBlock Text="{Binding PersonName}" HorizontalAlignment="Left" Foreground="White" FontSize="11" Height="14" TextWrapping="WrapWithOverflow"/>
+                                </Grid>
+                                <Rectangle  Uid="{Binding FaceId }"   Canvas.Left="{Binding Left}" Canvas.Top="{Binding Top}" Width="{Binding Width}" Height="{Binding Height}" Stroke="#FF26B8F4" StrokeThickness="1">
+                                    <!--<Rectangle.Resources>
+                                        <Style x:Key="itemRectanglestyle" TargetType="{x:Type Rectangle}">
+                                            <EventSetter Event="MouseDown" Handler="Rectangle_Click" />
+                                        </Style>
+                                    </Rectangle.Resources>-->
+                                </Rectangle>
+                            </Canvas>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <Image HorizontalAlignment="Center" VerticalAlignment="Center" Width="{Binding MaxImageSize, ElementName=FaceIdentificationPane}"  x:Name="ImageDisplay" Margin="96,-6,96,7" >
+                    <Image.Style>
+                        <Style TargetType="{x:Type Image}">
+                            <Setter Property="Source" Value="{Binding SelectedFile, ElementName=FaceIdentificationPane}" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding SelectedFile, ElementName=FaceIdentificationPane}" Value="{x:Null}">
+                                    <Setter Property="Source" Value="/Images/default.jpg" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                </Image>
+                <Label Background="DarkGray" Content="Identify Person" Margin="0,-43,-18,195" />
+                <Button Background="White" BorderBrush="Gray"  Content="Upload Image" Click="UploadImage_Click" Height="24" VerticalAlignment="Top" RenderTransformOrigin="0.442,0.041" Margin="1,189,292,-26"/>
+                <Button Name="btnIdentify" IsEnabled="False" Background="White" BorderBrush="Gray" Content="Identify"   Click="BtnIdentify_Click"  HorizontalAlignment="Right" Width="85" Height="25" Margin="0,188,-16,-26"/>
+            </Grid>
+
+            <!--<Grid Name="gridIdentifyPerson" Visibility="Hidden" Grid.ColumnSpan="2" Margin="2,58,-2,79">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="150"/>
                     <ColumnDefinition Width="*"/>
@@ -64,13 +112,23 @@
                     <RowDefinition Height="26*"/>
                     <RowDefinition Height="0*"/>
                 </Grid.RowDefinitions>
-                <GridSplitter Width="1" Background="Gray" IsEnabled="true" Margin="0,3,26,-44" Grid.RowSpan="4" Height="158" VerticalAlignment="Top" Grid.Row="1"/>
-                <Label Grid.Column="0"  Grid.Row="0" Margin="2,-4,2,6" Background="DarkGray" Content="Identify Person" Grid.ColumnSpan="2" />
-                <Button Background="White" Grid.Row="1" Grid.Column="0" BorderBrush="Gray"  Content="Upload Image" Margin="11,14,42,0" Click="UploadImage_Click" Height="44" VerticalAlignment="Top" RenderTransformOrigin="0.442,0.041"/>
-                <Image Grid.Row="1" Name="imgPhoto" MouseDown="Photo_MouseDown" Stretch="Uniform" Margin="132,6,15,-25" Grid.RowSpan="4" Grid.ColumnSpan="2"/>
+                <Label Grid.Column="0"  Grid.Row="0" Margin="2,-18,2,20" Background="DarkGray" Content="Identify Person" Grid.ColumnSpan="2" />
+                <Button Background="White" Grid.Row="4" Grid.Column="0" BorderBrush="Gray"  Content="Upload Image" Margin="7,45,58,-70" Click="UploadImage_Click" Height="25" VerticalAlignment="Top" RenderTransformOrigin="0.442,0.041"/>
+                <Image x:Name="ImageFile"  Stretch="Uniform" Margin="7,33,11,-15" Grid.RowSpan="5" Grid.ColumnSpan="2" HorizontalAlignment="Center" MouseDown="Photo_MouseDown" VerticalAlignment="Center" Height="{Binding MaxImageSize, ElementName=FaceIdentificationPane}" Width="{Binding MaxImageSize, ElementName=FaceDetectionPane}">
+                    <Image.Style>
+                        <Style TargetType="{x:Type Image}">
+                            <Setter Property="Source" Value="{Binding SelectedFile, ElementName=FaceIdentificationPane}" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding SelectedFile, ElementName=FaceIdentificationPane}" Value="{x:Null}">
+                                    <Setter Property="Source" Value="/Images/default.jpg" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                </Image>
                 <Button Name="btnIdentify" IsEnabled="False" Background="White" BorderBrush="Gray" Content="Identify"  Grid.Row="4" Click="BtnIdentify_Click" Margin="0,44,13,-68" HorizontalAlignment="Right" Width="85" Grid.Column="1"/>
                 <ProgressBar Visibility="Hidden" Name="identifyProgressBar" Margin="4,2,6,6" Grid.Row="3" Grid.ColumnSpan="2"/>
-            </Grid>
+            </Grid>-->
         </Grid>
     </Grid>
 </UserControl>

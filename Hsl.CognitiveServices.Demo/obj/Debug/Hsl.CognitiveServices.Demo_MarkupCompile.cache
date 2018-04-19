@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-D:\Projects\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\obj\Debug\
+D:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\obj\Debug\
 Hsl.CognitiveServices.Demo
 none
 false
 DEBUG;TRACE
-D:\Projects\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\App.xaml
+D:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\App.xaml
 3937518403
 
-10-1129450477
-96-1644590985
+11-659649607
+96-602520775
 MainWindow.xaml;UserControl\D365Login.xaml;UserControl\FaceIdentify.xaml;
 
 False

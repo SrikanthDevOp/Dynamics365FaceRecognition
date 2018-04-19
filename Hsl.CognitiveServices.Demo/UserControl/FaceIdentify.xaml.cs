@@ -15,17 +15,19 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.UI;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
 
 namespace Hsl.CognitiveServices.Demo.UserControl
 {
     /// <summary>
     /// Interaction logic for FaceIdentify.xaml
     /// </summary>
-    public partial class FaceIdentify : ITabbed
+    public partial class FaceIdentify : ITabbed, INotifyPropertyChanged
     {
         #region Fields
 
@@ -76,6 +78,12 @@ namespace Hsl.CognitiveServices.Demo.UserControl
         }
 
         /// <summary>
+        /// Gets or sets FaceId
+        /// </summary>
+        public string FaceId { get; set; }
+        
+
+        /// <summary>
         /// Gets or sets group id.
         /// </summary>
         public string PersonGroupId = "dynamics365contacts";
@@ -87,7 +95,7 @@ namespace Hsl.CognitiveServices.Demo.UserControl
         {
             get
             {
-                return 300;
+                return 186;
             }
         }
 
@@ -138,6 +146,7 @@ namespace Hsl.CognitiveServices.Demo.UserControl
             }
         }
 
+        private string  ImagePath{get;set;}
         private List<Contact> IdentifiedContacts { get; set; }
 
         private string strSubscriptionKey = string.Empty;
@@ -258,9 +267,9 @@ namespace Hsl.CognitiveServices.Demo.UserControl
                             AddPersistedFaceResult persistedFaces = taskPersisted.Result as AddPersistedFaceResult;
                             Persons.Add(new Person()
                             {
-                                Name = contact.FullName,
-                                PersonId = person.PersonId,
-                                PersistedFaceIds = new Guid[] { persistedFaces.PersistedFaceId }
+                                PersonName = contact.FullName,
+                                PersonId = person.PersonId.ToString(),
+                                PersistedFaceId = persistedFaces.PersistedFaceId.ToString()
                             });
                         }
                     });
@@ -332,7 +341,7 @@ namespace Hsl.CognitiveServices.Demo.UserControl
             return groupExists;
         }
 
-        private async void UploadImage_Click(object sender, RoutedEventArgs e)
+        private void UploadImage_Click(object sender, RoutedEventArgs e)
         {
             // Show file picker
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
@@ -343,22 +352,15 @@ namespace Hsl.CognitiveServices.Demo.UserControl
             if (result.HasValue && result.Value)
             {
                 btnIdentify.IsEnabled = true;
-                string filePath = dlg.FileName;
-                Uri fileUri = new Uri(filePath);
-                BitmapImage bitmapSource = new BitmapImage();
-                bitmapSource.BeginInit();
-                bitmapSource.CacheOption = BitmapCacheOption.None;
-                bitmapSource.UriSource = fileUri;
-                bitmapSource.EndInit();
-                imgPhoto.Source = bitmapSource;
-
                 // User picked one image
                 // Clear previous detection and identification results
                 TargetFaces.Clear();
                 var pickedImagePath = dlg.FileName;
+                this.ImagePath = pickedImagePath;
                 var renderingImage = UIHelper.LoadImageAppliedOrientation(pickedImagePath);
                 var imageInfo = UIHelper.GetImageInfoForRendering(renderingImage);
                 SelectedFile = renderingImage;
+                var sw = Stopwatch.StartNew();
                 var faceServiceClient = new FaceServiceClient(this.strSubscriptionKey, this.strEndpoint);
 
                 // Call detection REST API
@@ -366,41 +368,16 @@ namespace Hsl.CognitiveServices.Demo.UserControl
                 {
                     try
                     {
-                        Task<Face[]> taskfaces = Task.Run(async()=> await faceServiceClient.DetectAsync(fStream));
+                        var taskfaces = Task.Run(async()=> await faceServiceClient.DetectAsync(fStream));
                         while(!taskfaces.IsCompleted)
                         {
                             taskfaces.Wait();
                         }
-                        var faces = taskfaces.Result as Face[];
-                        DrawingVisual visual = new DrawingVisual();
-                        DrawingContext drawingContext = visual.RenderOpen();
-                        drawingContext.DrawImage(bitmapSource,
-                        new Rect(0, 0, bitmapSource.Width, bitmapSource.Height));
-                        double dpi = bitmapSource.DpiX;
-                        double resizeFactor = 96 / dpi;
-                        // Convert detection result into UI binding object for rendering
+                        var faces = taskfaces.Result.ToArray();
+                    
                         foreach (var face in UIHelper.CalculateFaceRectangleForRendering(faces, MaxImageSize, imageInfo))
                         {
                             TargetFaces.Add(face);
-                            drawingContext.DrawRectangle(
-                            Brushes.Transparent,
-                            new Pen(Brushes.Red, 2),
-                                new Rect(
-                                    face.FaceRectangle.Left * resizeFactor,
-                                    face.FaceRectangle.Top * resizeFactor,
-                                    face.FaceRectangle.Width * resizeFactor,
-                                    face.FaceRectangle.Height * resizeFactor
-                                )
-                            );
-                            drawingContext.Close();
-                            RenderTargetBitmap faceWithRectBitmap = new RenderTargetBitmap(
-                            (int)(bitmapSource.PixelWidth * resizeFactor),
-                            (int)(bitmapSource.PixelHeight * resizeFactor),
-                            96,
-                            96,
-                            PixelFormats.Pbgra32);
-                            faceWithRectBitmap.Render(visual);
-                            imgPhoto.Source = faceWithRectBitmap;
                         }
                     }
                     catch (FaceAPIException ex)
@@ -429,44 +406,56 @@ namespace Hsl.CognitiveServices.Demo.UserControl
             btnIdentify.IsEnabled = false;
         }
 
-        private void Photo_MouseDown(object sender, MouseEventArgs e)
+        private void canvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             try
             {
-                // If the REST call has not completed, return from this method.
-                if (_faces == null)
-                    return;
-                var faces = _faces.ToArray();
-                // Find the mouse position relative to the image.
-                Point mouseXY = e.GetPosition(imgPhoto);
-                ImageSource imageSource = imgPhoto.Source;
-                BitmapSource bitmapSource = (BitmapSource)imageSource;
-                double dpi = bitmapSource.DpiX;
-                double resizeFactor = 96 / dpi;
-                // Scale adjustment between the actual size and displayed size.
-                var scale = imgPhoto.ActualWidth / (bitmapSource.PixelWidth / resizeFactor);
-
-                for (int i = 0; i < faces.Length; ++i)
+                if (e.OriginalSource is Rectangle)
                 {
-                    FaceRectangle fr = faces[i].FaceRectangle;
-                    double left = fr.Left * scale;
-                    double top = fr.Top * scale;
-                    double width = fr.Width * scale;
-                    double height = fr.Height * scale;
+                    Rectangle clickedRectangle = (Rectangle)e.OriginalSource;
+                    string strFaceId = clickedRectangle.Uid;
 
-                    // Display the face description for this face if the mouse is over this face rectangle.
-                    if (mouseXY.X >= left && mouseXY.X <= left + width && mouseXY.Y >= top && mouseXY.Y <= top + height)
+                    Contact contact = this.IdentifiedContacts.Where(con => strFaceId == con.FaceId).FirstOrDefault();
+                    if (contact != null)
                     {
-                        Contact contact = this.IdentifiedContacts.Where(con => faces[i].FaceId == con.FaceId).FirstOrDefault();
-                        if (contact != null)
-                        {
-                            string strContactUrl = CrmHelper._organisationUrl + $"main.aspx?etn=contact&pagetype=entityrecord&id={contact.Id}";
-                            Process.Start("chrome.exe", "strContactUrl");
-                        }
-
-                        break;
+                        string strContactUrl = CrmHelper._organisationUrl + $"main.aspx?etn=contact&pagetype=entityrecord&id={contact.Id}";
+                        Process.Start("chrome.exe", "strContactUrl");
                     }
                 }
+
+                //// If the REST call has not completed, return from this method.
+                //if (_faces == null)
+                //    return;
+                //var faces = _faces.ToArray();
+                //// Find the mouse position relative to the image.
+                //Point mouseXY = e.GetPosition(ImageDisplay);
+                //ImageSource imageSource = ImageDisplay.Source;
+                //BitmapSource bitmapSource = (BitmapSource)imageSource;
+                //double dpi = bitmapSource.DpiX;
+                //double resizeFactor = 96 / dpi;
+                //// Scale adjustment between the actual size and displayed size.
+                //var scale = ImageDisplay.ActualWidth / (bitmapSource.PixelWidth / resizeFactor);
+
+                //for (int i = 0; i < faces.Length; ++i)
+                //{
+                //    var fr = faces[i].UIRect;
+                //    double left = fr.X * scale;
+                //    double top = fr.Y * scale;
+                //    double width = fr.Width * scale;
+                //    double height = fr.Height * scale;
+
+                //    // Display the face description for this face if the mouse is over this face rectangle.
+                //    if (mouseXY.X >= left && mouseXY.X <= left + width && mouseXY.Y >= top && mouseXY.Y <= top + height)
+                //    {
+                //        Contact contact = this.IdentifiedContacts.Where(con => faces[i].FaceId == con.FaceId).FirstOrDefault();
+                //        if (contact != null)
+                //        {
+                //            string strContactUrl = CrmHelper._organisationUrl + $"main.aspx?etn=contact&pagetype=entityrecord&id={contact.Id}";
+                //            Process.Start("chrome.exe", "strContactUrl");
+                //        }
+                //        break;
+                //    }
+                //}
             }
             catch (Exception ex)
             {
@@ -482,7 +471,7 @@ namespace Hsl.CognitiveServices.Demo.UserControl
                 using (var faceServiceClient = new FaceServiceClient(this.strSubscriptionKey, this.strEndpoint))
                 {
                     // Call identify REST API, the result contains identified person information
-                    var identifyResult = await faceServiceClient.IdentifyAsync(TargetFaces.Select(ff => ff.FaceId).ToArray(), personGroupId: this.PersonGroupId);
+                    var identifyResult = await faceServiceClient.IdentifyAsync(TargetFaces.Select(ff => new Guid(ff.FaceId)).ToArray(), personGroupId: this.PersonGroupId);
                     this.IdentifiedContacts = new List<Contact>();
                     var faces = TargetFaces.ToArray();
                     for (int idx = 0; idx < faces.Length; idx++)
@@ -492,15 +481,14 @@ namespace Hsl.CognitiveServices.Demo.UserControl
                         var res = identifyResult[idx];
 
                         string contactName;
-                        if (res.Candidates.Length > 0 && Persons.Any(p => p.PersonId == res.Candidates[0].PersonId))
+                        if (res.Candidates.Length > 0 /*&& Persons.Any(p => p.PersonId == res.Candidates[0].PersonId )*/ )
                         {
-                            contactName = Persons.Where(p => p.PersonId == res.Candidates[0].PersonId).First().Name;
+                            var person = await faceServiceClient.GetPersonAsync(this.PersonGroupId, res.Candidates[0].PersonId);
                             IdentifiedContacts.Add(new Contact()
                             {
-                                FullName = contactName,
-                                Id = res.Candidates[0].PersonId.ToString(),
-                                FaceId = face.FaceId
-
+                                FullName = person.Name,
+                                Id = person.PersonId.ToString(),
+                                FaceId =face.FaceId
                             });
                         }
                         else
@@ -521,6 +509,60 @@ namespace Hsl.CognitiveServices.Demo.UserControl
             }
         }
 
+        private void ItemsControl_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        private void gridIdentifyPerson_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            e.Handled = true;
+
+            System.Windows.Controls.Image clickedImage = e.Source as System.Windows.Controls.Image;
+
+            // Find the mouse position relative to the image.
+            Point mouseXY = e.GetPosition(clickedImage);
+            var renderingImage = UIHelper.LoadImageAppliedOrientation(this.ImagePath);
+            var imageInfo = UIHelper.GetImageInfoForRendering(renderingImage);
+            var imageWidth = imageInfo.Item1;
+            var imageHeight = imageInfo.Item2;
+            float ratio = (float)imageWidth / imageHeight;
+            int uiWidth = 0;
+            int uiHeight = 0;
+            if (ratio > 1.0)
+            {
+                uiWidth = this.MaxImageSize;
+                uiHeight = (int)(this.MaxImageSize / ratio);
+            }
+            else
+            {
+                uiHeight = this.MaxImageSize;
+                uiWidth = (int)(ratio * uiHeight);
+            }
+
+            int uiXOffset = (MaxImageSize - uiWidth) / 2;
+            int uiYOffset = (MaxImageSize - uiHeight) / 2;
+            float scale = (float)uiWidth / imageWidth;
+            foreach (var face in _faces)
+            {
+                var left = (face.Left - uiXOffset) / scale;
+                var top= ((face.Top - uiYOffset) / scale);
+                var height = face.Left / scale;
+                var width = face.Width / scale;
+
+                // Display the face description for this face if the mouse is over this face rectangle.
+                if (mouseXY.X <= left && mouseXY.X <= left + width && mouseXY.Y >= top && mouseXY.Y <= top + height)
+                {
+                    Contact contact = this.IdentifiedContacts.Where(con => face.FaceId == con.FaceId).FirstOrDefault();
+                    if (contact != null)
+                    {
+                        string strContactUrl = CrmHelper._organisationUrl + $"main.aspx?etn=contact&pagetype=entityrecord&id={contact.Id}";
+                        Process.Start("chrome.exe", "strContactUrl");
+                    }
+                    break;
+                }
+            }
+        }
     }
 
     public class Contact
@@ -528,8 +570,207 @@ namespace Hsl.CognitiveServices.Demo.UserControl
         public string FullName { get; set; }
         public byte[] ImageBytes { get; set; }
         public string Id { get; set; }
-        public Guid FaceId { get; set; }
+        public string FaceId { get; set; }
 
     }
+
+    #region Nested Types
+
+    /// <summary>
+    /// Identification result for UI binding
+    /// </summary>
+    public class IdentificationResult : INotifyPropertyChanged
+    {
+        #region Fields
+
+        /// <summary>
+        /// Face to identify
+        /// </summary>
+        private Face _faceToIdentify;
+
+        /// <summary>
+        /// Identified person's name
+        /// </summary>
+        private string _name;
+
+        #endregion Fields
+
+        #region Events
+
+        /// <summary>
+        /// Implement INotifyPropertyChanged interface
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        #endregion Events
+
+        #region Properties
+
+        /// <summary>
+        /// Gets or sets face to identify
+        /// </summary>
+        public Face FaceToIdentify
+        {
+            get
+            {
+                return _faceToIdentify;
+            }
+
+            set
+            {
+                _faceToIdentify = value;
+                if (PropertyChanged != null)
+                {
+                    PropertyChanged(this, new PropertyChangedEventArgs("FaceToIdentify"));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets identified person's name
+        /// </summary>
+        public string Name
+        {
+            get
+            {
+                return _name;
+            }
+
+            set
+            {
+                _name = value;
+                if (PropertyChanged != null)
+                {
+                    PropertyChanged(this, new PropertyChangedEventArgs("Name"));
+                }
+            }
+        }
+
+        #endregion Properties
+    }
+    /// <summary>
+    /// Person structure for UI binding
+    /// </summary>
+    public class Person : INotifyPropertyChanged
+    {
+        #region Fields
+
+        /// <summary>
+        /// Person's faces from database
+        /// </summary>
+        private ObservableCollection<Face> _faces = new ObservableCollection<Face>();
+
+        /// <summary>
+        /// Person's id
+        /// </summary>
+        private string _personId;
+
+        /// <summary>
+        /// Person's name
+        /// </summary>
+        private string _personName;
+
+        /// <summary>
+        /// Person's Persisted face Id
+        /// </summary>
+        private string _persistedFaceId;
+
+        #endregion Fields
+
+        #region Events
+
+        /// <summary>
+        /// Implement INotifyPropertyChanged interface
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        #endregion Events
+
+        #region Properties
+
+        /// <summary>
+        /// Gets or sets person's faces from database
+        /// </summary>
+        public ObservableCollection<Face> Faces
+        {
+            get
+            {
+                return _faces;
+            }
+
+            set
+            {
+                _faces = value;
+                if (PropertyChanged != null)
+                {
+                    PropertyChanged(this, new PropertyChangedEventArgs("Faces"));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets person's id
+        /// </summary>
+        public string PersonId
+        {
+            get
+            {
+                return _personId;
+            }
+
+            set
+            {
+                _personId = value;
+                if (PropertyChanged != null)
+                {
+                    PropertyChanged(this, new PropertyChangedEventArgs("PersonId"));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets person's name
+        /// </summary>
+        public string PersonName
+        {
+            get
+            {
+                return _personName;
+            }
+
+            set
+            {
+                _personName = value;
+                if (PropertyChanged != null)
+                {
+                    PropertyChanged(this, new PropertyChangedEventArgs("PersonName"));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets person's name
+        /// </summary>
+        public string PersistedFaceId
+        {
+            get
+            {
+                return _persistedFaceId;
+            }
+
+            set
+            {
+                _persistedFaceId = value;
+                if (PropertyChanged != null)
+                {
+                    PropertyChanged(this, new PropertyChangedEventArgs("PersistedFaceId"));
+                }
+            }
+        }
+
+        #endregion Properties
+    }
+
+    #endregion
 
 }

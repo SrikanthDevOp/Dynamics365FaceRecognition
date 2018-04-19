@@ -107,7 +107,7 @@ namespace Hsl.CognitiveServices.Demo
         /// <param name="maxSize">Image rendering size</param>
         /// <param name="imageInfo">Image width and height</param>
         /// <returns>Face structure for rendering</returns>
-        public static IEnumerable<Face> CalculateFaceRectangleForRendering(IEnumerable<Face> faces, int maxSize, Tuple<int, int> imageInfo)
+        public static IEnumerable<Face> CalculateFaceRectangleForRendering(IEnumerable<Microsoft.ProjectOxford.Face.Contract.Face> faces, int maxSize, Tuple<int, int> imageInfo)
         {
             var imageWidth = imageInfo.Item1;
             var imageHeight = imageInfo.Item2;
@@ -128,19 +128,15 @@ namespace Hsl.CognitiveServices.Demo
             int uiXOffset = (maxSize - uiWidth) / 2;
             int uiYOffset = (maxSize - uiHeight) / 2;
             float scale = (float)uiWidth / imageWidth;
-
             foreach (var face in faces)
             {
-                yield return new Face
+                yield return new Face()
                 {
-                    FaceId = face.FaceId,
-                    FaceRectangle = new FaceRectangle()
-                    {
-                        Left = (int)((face.FaceRectangle.Left * scale) + uiXOffset),
-                        Top = (int)((face.FaceRectangle.Top * scale) + uiYOffset),
-                        Height = (int)(face.FaceRectangle.Height * scale),
-                        Width = (int)(face.FaceRectangle.Width * scale)
-                    }
+                    FaceId = face.FaceId.ToString(),
+                    Left = (int)((face.FaceRectangle.Left * scale) + uiXOffset),
+                    Top = (int)((face.FaceRectangle.Top * scale) + uiYOffset),
+                    Height = (int)(face.FaceRectangle.Height * scale),
+                    Width = (int)(face.FaceRectangle.Width * scale),
                 };
             }
         }
