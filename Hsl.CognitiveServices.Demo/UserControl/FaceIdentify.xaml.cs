@@ -250,7 +250,7 @@ namespace Hsl.CognitiveServices.Demo.UserControl
                         Task<CreatePersonResult> taskCreatePerson = Task.Run(async () => await faceServiceClient.CreatePersonAsync(
                             // Id of the PersonGroup that the person belonged to
                             this.PersonGroupId,
-                            contact.FullName));
+                            contact.FullName,contact.Id));
 
                         while (!taskCreatePerson.IsCompleted)
                         {
@@ -331,11 +331,15 @@ namespace Hsl.CognitiveServices.Demo.UserControl
 
                 }
             }
-            catch (FaceAPIException ex)
+            catch (Exception ex)
             {
-                if (ex.ErrorCode != "PersonGroupNotFound")
+                if (((FaceAPIException)ex.InnerException).ErrorCode == "PersonGroupNotFound")
                 {
                     groupExists = false;
+                }
+                else
+                {
+                    throw ex;
                 }
             }
             return groupExists;
@@ -481,13 +485,13 @@ namespace Hsl.CognitiveServices.Demo.UserControl
                         var res = identifyResult[idx];
 
                         string contactName;
-                        if (res.Candidates.Length > 0 /*&& Persons.Any(p => p.PersonId == res.Candidates[0].PersonId )*/ )
+                        if (res.Candidates.Length > 0 )
                         {
                             var person = await faceServiceClient.GetPersonAsync(this.PersonGroupId, res.Candidates[0].PersonId);
                             IdentifiedContacts.Add(new Contact()
                             {
                                 FullName = person.Name,
-                                Id = person.PersonId.ToString(),
+                                Id = person.UserData,
                                 FaceId =face.FaceId
                             });
                         }
@@ -517,47 +521,19 @@ namespace Hsl.CognitiveServices.Demo.UserControl
         private void gridIdentifyPerson_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             e.Handled = true;
-
             System.Windows.Controls.Image clickedImage = e.Source as System.Windows.Controls.Image;
-
             // Find the mouse position relative to the image.
             Point mouseXY = e.GetPosition(clickedImage);
-            var renderingImage = UIHelper.LoadImageAppliedOrientation(this.ImagePath);
-            var imageInfo = UIHelper.GetImageInfoForRendering(renderingImage);
-            var imageWidth = imageInfo.Item1;
-            var imageHeight = imageInfo.Item2;
-            float ratio = (float)imageWidth / imageHeight;
-            int uiWidth = 0;
-            int uiHeight = 0;
-            if (ratio > 1.0)
+            foreach (var face in TargetFaces)
             {
-                uiWidth = this.MaxImageSize;
-                uiHeight = (int)(this.MaxImageSize / ratio);
-            }
-            else
-            {
-                uiHeight = this.MaxImageSize;
-                uiWidth = (int)(ratio * uiHeight);
-            }
-
-            int uiXOffset = (MaxImageSize - uiWidth) / 2;
-            int uiYOffset = (MaxImageSize - uiHeight) / 2;
-            float scale = (float)uiWidth / imageWidth;
-            foreach (var face in _faces)
-            {
-                var left = (face.Left - uiXOffset) / scale;
-                var top= ((face.Top - uiYOffset) / scale);
-                var height = face.Left / scale;
-                var width = face.Width / scale;
-
                 // Display the face description for this face if the mouse is over this face rectangle.
-                if (mouseXY.X <= left && mouseXY.X <= left + width && mouseXY.Y >= top && mouseXY.Y <= top + height)
+                if (mouseXY.X >= face.Left && mouseXY.X <= (face.Left + face.Width) && /*mouseXY.Y >= face.Top */ mouseXY.Y <= (face.Top + face.Height))
                 {
                     Contact contact = this.IdentifiedContacts.Where(con => face.FaceId == con.FaceId).FirstOrDefault();
                     if (contact != null)
                     {
                         string strContactUrl = CrmHelper._organisationUrl + $"main.aspx?etn=contact&pagetype=entityrecord&id={contact.Id}";
-                        Process.Start("chrome.exe", "strContactUrl");
+                        Process.Start("chrome.exe", strContactUrl);
                     }
                     break;
                 }

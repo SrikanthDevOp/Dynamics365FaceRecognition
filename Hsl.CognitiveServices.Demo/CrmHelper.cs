@@ -30,7 +30,14 @@ namespace Hsl.CognitiveServices.Demo
                 using (CrmServiceClient crmSvc = new CrmServiceClient(connectionString))
                 {
                     _serviceProxy = crmSvc.OrganizationServiceProxy;
-                    blnConnectionSuccess = true;
+                    if (_serviceProxy != null)
+                    {
+                        blnConnectionSuccess = true;
+                    }
+                    else
+                    {
+                        connectionErrorMessage = "Please try again.";
+                    }
                 } 
             }
             catch(Exception ex)
