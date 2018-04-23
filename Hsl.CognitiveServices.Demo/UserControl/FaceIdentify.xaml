@@ -7,8 +7,8 @@
              mc:Ignorable="d" Height="291.489" Width="397.872" x:Name="FaceIdentificationPane"  Background="White" BorderBrush="Gray" BorderThickness="1px" >
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="287*"/>
-            <RowDefinition Height="4*"/>
+            <RowDefinition Height="288*"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
         <Button Grid.Row="0" Name="btnClose" Content="x" TextBlock.Foreground="Gray"   TextBlock.FontSize="15" BorderBrush="White"  Background="White" IsCancel="True" Click="BtnClose_Click"  Margin="369,2,3,260" RenderTransformOrigin="5.724,0.531"/>
         <Grid Grid.RowSpan="2">
@@ -22,7 +22,6 @@
                     <ColumnDefinition Width="111.2"/>
                     <ColumnDefinition Width="98.4"/>
                     <ColumnDefinition Width="126*"/>
-                    <ColumnDefinition Width="34*"/>
                     <ColumnDefinition Width="27*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
@@ -31,7 +30,7 @@
                     <RowDefinition Height="34"/>
                     <RowDefinition Height="33"/>
                 </Grid.RowDefinitions>
-                <Label FontSize="13" Height="30" Grid.Column="0"   Grid.Row="0" Margin="0,-26,-1,28" Background="DarkGray" Content="Face API Key Management" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="5"/>
+                <Label FontSize="13" Height="30" Grid.Column="0"   Grid.Row="0" Margin="0,-25,0,29" Background="DarkGray" Content="Face API Key Management" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="5"/>
                 <Label Grid.Column="0" Grid.Row="1" Content="Subscription Key:" Margin="3,0,0,17"/>
                 <TextBox Grid.Column="1" Grid.Row="1" Name="txtSubscriptionKey" Margin="5,2,11,17" Grid.ColumnSpan="4" />
                 <Label Grid.Column="0" Content="Endpoint :" Margin="3,44,0,8" HorizontalAlignment="Left" Width="96" Grid.Row="1" Grid.RowSpan="2"/>
@@ -43,19 +42,19 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="250"/>
                     <ColumnDefinition Width="6*"/>
-                    <ColumnDefinition Width="67*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="33*"/>
-                    <RowDefinition Height="112*"/>
-                    <RowDefinition Height="57*"/>
+                    <RowDefinition Height="34*"/>
+                    <RowDefinition Height="44"/>
+                    <RowDefinition Height="125"/>
                     <RowDefinition Height="27*"/>
-                    <RowDefinition/>
                 </Grid.RowDefinitions>
-                <Label Grid.Column="0" Height="30" FontSize="13"  Grid.Row="0" Margin="0,-24,-2,27" Background="DarkGray" Content="Train Face API model with Dynamics 365 Contacts" Grid.ColumnSpan="3" />
-                <TextBlock Grid.Row="1" TextWrapping="WrapWithOverflow" Margin="0,0,-3,6" Grid.ColumnSpan="3"><Run/><LineBreak/><Run Text="Training is required to recognize the faces of contacts in Dynamics 365. This facilitates the Face API model to detect and identify the Dynamics 365 contacts when you upload any image for identification."/></TextBlock>
-                <Button Name="btnTrain" Background="White" BorderBrush="Gray" Content="Train"  Grid.Row="2" Click="BtnTrain_Click" Margin="49.288,56,0,4" HorizontalAlignment="Left" Width="82" Grid.RowSpan="2" Grid.Column="2"/>
-                <ProgressBar Visibility="Hidden" Name="trainProgressBar" Margin="4,1,3,7" Grid.Row="3" Grid.ColumnSpan="3"/>
+                <Label Grid.Column="0" Height="30" FontSize="13"  Grid.Row="0" Margin="0,-24,0,0" Background="DarkGray" Content="Train Face API model with Dynamics 365 Contacts" Grid.ColumnSpan="2" VerticalAlignment="Top" />
+                <TextBlock FontSize="10"  TextWrapping="WrapWithOverflow" Margin="0,9,-3,8" Grid.ColumnSpan="2" Grid.RowSpan="2" HorizontalAlignment="Right" Width="399"><Run/><LineBreak/><Run Text="Training is required to recognize the faces of contacts in Dynamics 365. This facilitates the Face API model to detect and identify the Dynamics 365 contacts whenever you upload any image for identification."/></TextBlock>
+                <Button Name="btnTrain" Background="White" BorderBrush="Gray" Content="Train"  Grid.Row="3" Click="BtnTrain_Click" Margin="59,3,0,2" HorizontalAlignment="Left" Width="82" Grid.Column="1"/>
+                <Button Name="btnTrainSkip" Background="White" BorderBrush="Gray" Content="Skip"  Grid.Row="3" Click="BtnTrainSkip_Click" Margin="218,3,0,0" HorizontalAlignment="Left" Width="82" Grid.ColumnSpan="2" Height="22" VerticalAlignment="Top"/>
+                <ProgressBar Grid.Row="2" Panel.ZIndex="999" Visibility="Hidden" Foreground="Green" Name="PBTrainFaceApi"  IsIndeterminate="true" Grid.ColumnSpan="2" Margin="0,34,29,85"  HorizontalAlignment="Right" Width="352" RenderTransformOrigin="0.5,0.5">
+                </ProgressBar>
             </Grid>
 
             <Grid Name="gridIdentifyPerson"  Visibility="Hidden"  MouseLeftButtonDown="gridIdentifyPerson_MouseLeftButtonDown" Grid.ColumnSpan="2" Margin="0,75,0,27">
@@ -90,9 +89,10 @@
                         </Style>
                     </Image.Style>
                 </Image>
-                <Label Background="DarkGray" Height="30" FontSize="13" Content="Identify Person" Margin="0,-43,1,195" />
+                <Label Background="DarkGray" Height="30" FontSize="13" Content="Identify Person" Margin="0,-40,0,197" />
                 <Button Background="White" BorderBrush="Gray"  Content="Upload Image" Click="UploadImage_Click" Height="25" VerticalAlignment="Top" RenderTransformOrigin="0.442,0.041" Margin="1,188,310,-26"/>
                 <Button Name="btnIdentify" IsEnabled="False" Background="White" BorderBrush="Gray" Content="Identify"   Click="BtnIdentify_Click"  HorizontalAlignment="Right" Width="85" Height="25" Margin="0,187,1,-25"/>
+                <ProgressBar Name="PBIdentify" Visibility="Hidden" IsIndeterminate="true"  Foreground="Green" Margin="96,202,97,-17" RenderTransformOrigin="0.5,0.5"/>
             </Grid>
         </Grid>
     </Grid>

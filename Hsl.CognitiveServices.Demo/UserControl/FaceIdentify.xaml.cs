@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Configuration;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -159,6 +160,30 @@ namespace Hsl.CognitiveServices.Demo.UserControl
         {
             InitializeComponent();
             _maxConcurrentProcesses = 4;
+            FillFaceApiDetails();
+        }
+
+        private void FillFaceApiDetails()
+        {
+            string strEndpoint = ConfigurationManager.AppSettings["FaceApiEndpoint"];
+            string strSubKey = ConfigurationManager.AppSettings["FaceApiKey"];
+            if(!string.IsNullOrEmpty(strSubKey))
+            {
+                txtSubscriptionKey.Text = strSubKey;
+            }
+            if (!string.IsNullOrEmpty(strSubKey))
+            {
+                txtEndpoint.Text = strEndpoint;
+            }
+        }
+
+        private void UpdateFaceApiKeys(string strEndpoint, string strSubscriptionKey)
+        {
+            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            config.AppSettings.Settings["FaceApiEndpoint"].Value = strEndpoint;
+            config.AppSettings.Settings["FaceApiKey"].Value = strSubscriptionKey;
+            config.Save(ConfigurationSaveMode.Modified);
+            ConfigurationManager.RefreshSection(config.AppSettings.SectionInformation.Name);
         }
 
         /// <summary>
@@ -175,19 +200,31 @@ namespace Hsl.CognitiveServices.Demo.UserControl
         {
             if (string.IsNullOrEmpty(txtSubscriptionKey.Text) || string.IsNullOrEmpty(txtEndpoint.Text))
             {
-
+                MessageBox.Show("Please provide the Face API details.");
             }
             else
             {
                 this.strSubscriptionKey = txtSubscriptionKey.Text;
                 this.strEndpoint = txtEndpoint.Text;
+                string strEndpointValue = ConfigurationManager.AppSettings["FaceApiEndpoint"];
+                string strSubKeyValue = ConfigurationManager.AppSettings["FaceApiKey"];
+                if(strEndpointValue != this.strEndpoint || strSubKeyValue != this.strSubscriptionKey)
+                {
+                    UpdateFaceApiKeys(txtEndpoint.Text, txtSubscriptionKey.Text);
+                }
                 gridFaceAPIKeyManagement.Visibility = Visibility.Hidden;
                 gridTrainPersonGroup.Visibility = Visibility.Visible;
             }
         }
+        private void BtnTrainSkip_Click(object sender, RoutedEventArgs e)
+        {
+            gridTrainPersonGroup.Visibility = Visibility.Hidden;
+            gridIdentifyPerson.Visibility = Visibility.Visible;
+        }
 
         private void BtnTrain_Click(object sender, RoutedEventArgs e)
         {
+            PBTrainFaceApi.Visibility = Visibility.Visible;
             bool blnTrainingSuccess = false;
             try
             {
@@ -224,6 +261,7 @@ namespace Hsl.CognitiveServices.Demo.UserControl
                 MessageBox.Show(ex.Message);
                 blnTrainingSuccess = false;
             }
+            PBTrainFaceApi.Visibility = Visibility.Hidden;
             if (blnTrainingSuccess)
             {
                 gridTrainPersonGroup.Visibility = Visibility.Hidden;
@@ -355,6 +393,7 @@ namespace Hsl.CognitiveServices.Demo.UserControl
 
             if (result.HasValue && result.Value)
             {
+                PBIdentify.Visibility = Visibility.Visible;
                 btnIdentify.IsEnabled = true;
                 // User picked one image
                 // Clear previous detection and identification results
@@ -391,10 +430,12 @@ namespace Hsl.CognitiveServices.Demo.UserControl
                 }
             }
             GC.Collect();
+            PBIdentify.Visibility = Visibility.Hidden;
         }
 
         private void BtnIdentify_Click(object sender, RoutedEventArgs e)
         {
+            PBIdentify.Visibility = Visibility.Visible;
             try
             {
                 Task<bool> taskIdentify = Task.Run((async () => await IdentifyFaces()));
@@ -408,6 +449,7 @@ namespace Hsl.CognitiveServices.Demo.UserControl
                 MessageBox.Show(ex.Message);
             }
             btnIdentify.IsEnabled = false;
+            PBIdentify.Visibility = Visibility.Hidden;
         }
 
         private void canvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -488,12 +530,14 @@ namespace Hsl.CognitiveServices.Demo.UserControl
                         if (res.Candidates.Length > 0 )
                         {
                             var person = await faceServiceClient.GetPersonAsync(this.PersonGroupId, res.Candidates[0].PersonId);
+
                             IdentifiedContacts.Add(new Contact()
                             {
                                 FullName = person.Name,
                                 Id = person.UserData,
                                 FaceId =face.FaceId
                             });
+                            face.PersonName = person.Name;
                         }
                         else
                         {
@@ -501,6 +545,7 @@ namespace Hsl.CognitiveServices.Demo.UserControl
                             {
                                 FullName = "UnKnown"
                             });
+                            face.PersonName = "UnKnown";
                         }
                     }
                 }
@@ -529,13 +574,16 @@ namespace Hsl.CognitiveServices.Demo.UserControl
                 // Display the face description for this face if the mouse is over this face rectangle.
                 if (mouseXY.X >= face.Left && mouseXY.X <= (face.Left + face.Width) && /*mouseXY.Y >= face.Top */ mouseXY.Y <= (face.Top + face.Height))
                 {
-                    Contact contact = this.IdentifiedContacts.Where(con => face.FaceId == con.FaceId).FirstOrDefault();
-                    if (contact != null)
+                    if(this.IdentifiedContacts!=null)
                     {
-                        string strContactUrl = CrmHelper._organisationUrl + $"main.aspx?etn=contact&pagetype=entityrecord&id={contact.Id}";
-                        Process.Start("chrome.exe", strContactUrl);
+                        Contact contact = this.IdentifiedContacts.Where(con => face.FaceId == con.FaceId).FirstOrDefault();
+                        if (contact != null)
+                        {
+                            string strContactUrl = CrmHelper._organisationUrl + $"main.aspx?etn=contact&pagetype=entityrecord&id={contact.Id}";
+                            Process.Start("chrome.exe", strContactUrl);
+                        }
+                        break;
                     }
-                    break;
                 }
             }
         }

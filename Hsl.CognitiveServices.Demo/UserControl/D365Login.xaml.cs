@@ -1,17 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Configuration;
 
 namespace Hsl.CognitiveServices.Demo.UserControl
 {
@@ -39,10 +29,12 @@ namespace Hsl.CognitiveServices.Demo.UserControl
             if (rdoOnPremise.IsChecked.Equals(true))
             {
                 gridOnPremiseLogin.Visibility = Visibility.Visible;
+                FillLoginDetails(ConnectionType.OnPremise);
             }
             else
             {
                 gridOnLineLogin.Visibility = Visibility.Visible;
+                FillLoginDetails(ConnectionType.Online);
             }
             btnNextLogin.Visibility = Visibility.Hidden;
             gridInstanceType.Visibility = Visibility.Hidden;
@@ -80,13 +72,19 @@ namespace Hsl.CognitiveServices.Demo.UserControl
             }
             else
             {
+                PBOnlineLogin.Visibility = Visibility.Visible;
                 string strAuthType = "Office365";
                 string strServerUrl = txtServerOnline.Text;
 
                 AppendOrgnaisationName(ref strServerUrl);
                 string strUserName = txtUserNameOnline.Text;
                 string strPassword = txtPasswordOnline.Password.ToString();
-                string strConnectionString = $"AuthType={strAuthType};Url={strServerUrl}; Username={strUserName}; Password={strPassword}";
+                string strConnectionString = $"AuthType={strAuthType};Url={strServerUrl};Username={strUserName};Password={strPassword}";
+                string strConStringKeyValue = ConfigurationManager.AppSettings["DynamicsConnectionStringOnline"];
+                if(strConStringKeyValue!= strConnectionString)
+                {
+                    UpdateConnectionStringValue(strConnectionString, ConnectionType.Online);
+                }
                 string strErrorMessage;
                 if (CrmHelper.ConnectUsingConnectionString(strConnectionString, out strErrorMessage))
                 {
@@ -102,6 +100,7 @@ namespace Hsl.CognitiveServices.Demo.UserControl
                     MessageBox.Show("Unable to login :" + "\r\n" + strErrorMessage);
                 }
             }
+            PBOnlineLogin.Visibility = Visibility.Hidden;
         }
         private void OnPremiseLogin_Click(object sender, RoutedEventArgs e)
         {
@@ -114,13 +113,19 @@ namespace Hsl.CognitiveServices.Demo.UserControl
             }
             else
             {
+                PBOnpremiseLogin.Visibility = Visibility.Visible;
                 string strAuthType = cmbAuthType.SelectedValue.ToString();
                 string strServerUrl = txtServerOnPremise.Text;
                 AppendOrgnaisationName(ref strServerUrl);
                 string strDomain = txtDomainOnPremise.Text;
                 string strUserName = txtUserNameOnPremise.Text;
                 string strPassword = txtPasswordOnPremise.Password.ToString();
-                string strConnectionString = $"AuthType={strAuthType};Url={strServerUrl}; Domain={strDomain}; Username={strUserName}; Password={strPassword}";
+                string strConnectionString = $"AuthType={strAuthType};Url={strServerUrl};Domain={strDomain};Username={strUserName};Password={strPassword}";
+                string strConStringKeyValue = ConfigurationManager.AppSettings["DynamicsConnectionStringOnPremise"];
+                if (strConStringKeyValue != strConnectionString)
+                {
+                    UpdateConnectionStringValue(strConnectionString, ConnectionType.OnPremise);
+                }
                 string strErrorMessage;
                 if (CrmHelper.ConnectUsingConnectionString(strConnectionString, out strErrorMessage))
                 {
@@ -135,6 +140,122 @@ namespace Hsl.CognitiveServices.Demo.UserControl
                 {
                     MessageBox.Show("Unable to login :" + "\r\n" + strErrorMessage);
                 }
+            }
+            PBOnpremiseLogin.Visibility = Visibility.Hidden;
+        }
+        private void UpdateConnectionStringValue(string strConnectionString, ConnectionType typeCon)
+        {
+            try
+            {
+                Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                if (typeCon.Equals(ConnectionType.Online))
+                {
+                    config.AppSettings.Settings["DynamicsConnectionStringOnline"].Value = strConnectionString;
+                }
+                if (typeCon.Equals(ConnectionType.OnPremise))
+                {
+                    config.AppSettings.Settings["DynamicsConnectionStringOnPremise"].Value = strConnectionString;
+                }
+                config.Save(ConfigurationSaveMode.Modified);
+                ConfigurationManager.RefreshSection(config.AppSettings.SectionInformation.Name);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void FillLoginDetails(ConnectionType typeCon)
+        {
+            try
+            {
+                string strConnectionString;
+                if(typeCon.Equals(ConnectionType.Online))
+                {
+                    strConnectionString = ConfigurationManager.AppSettings["DynamicsConnectionStringOnline"];
+                    if(string.IsNullOrEmpty(strConnectionString))
+                    {
+                        return;
+                    }
+                    string[] strParams = strConnectionString.Split(';');
+                    foreach (string strParam in strParams)
+                    {
+                        string strKey = strParam.Split('=')[0];
+                        string strValue = strParam.Split('=')[1];
+                        if (strKey.Equals("Url"))
+                        {
+                            if(strValue.LastIndexOf('/')!=0)
+                            {
+                                txtServerOnline.Text = strValue.Substring(0, strValue.LastIndexOf('/'));
+                            }else
+                            {
+                                txtServerOnline.Text = strValue;
+                            }
+                        }else
+                        {
+                            if (strKey.Equals("Username"))
+                            {
+                                txtUserNameOnline.Text = strValue;
+                            }else
+                            {
+                                if (strKey.Equals("Password"))
+                                {
+                                    txtPasswordOnline.Password = strValue;
+                                }
+                            }
+                        }
+                    }
+                }
+                if (typeCon.Equals(ConnectionType.OnPremise))
+                {
+                    strConnectionString = ConfigurationManager.AppSettings["DynamicsConnectionStringOnPremise"];
+                    if (string.IsNullOrEmpty(strConnectionString))
+                    {
+                        return;
+                    }
+                    string[] strParams = strConnectionString.Split(';');
+                    foreach (string strParam in strParams)
+                    {
+                        string strKey = strParam.Split('=')[0];
+                        string strValue = strParam.Split('=')[1];
+                        strValue = strValue.Substring(strValue.IndexOf('{') + 1, strValue.LastIndexOf('}') - 1);
+                        if (strKey.Equals("Url"))
+                        {
+                            if (strValue.LastIndexOf('/') != 0)
+                            {
+                                txtServerOnPremise.Text = strValue.Substring(0, strValue.LastIndexOf('/'));
+                            }else
+                            {
+                                txtServerOnPremise.Text = strValue;
+                            }
+                        }
+                        else
+                        {
+                            if (strKey.Equals("Username"))
+                            {
+                                txtUserNameOnPremise.Text = strValue;
+                            }
+                            else
+                            {
+                                if (strKey.Equals("Password"))
+                                {
+                                    txtPasswordOnPremise.Password = strValue;
+                                }else
+                                {
+                                    if(strKey.Equals("Domain"))
+                                    {
+                                        txtDomainOnPremise.Text = strValue;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+            catch(Exception ex)
+            {
+
             }
         }
 
@@ -164,6 +285,11 @@ namespace Hsl.CognitiveServices.Demo.UserControl
                 }
             }
         }
+        #endregion
     }
-    #endregion
+    public enum ConnectionType
+    {
+        Online=0,
+        OnPremise=1
+    }
 }

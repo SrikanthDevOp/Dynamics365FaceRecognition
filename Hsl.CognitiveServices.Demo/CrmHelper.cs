@@ -27,6 +27,29 @@ namespace Hsl.CognitiveServices.Demo
             connectionErrorMessage = string.Empty;
             try
             {
+                Task<bool> taskRequest=MakeConnectionRequestAsync(connectionString);
+                while(!taskRequest.IsCompleted)
+                {
+                    taskRequest.Wait();
+                }
+                blnConnectionSuccess = taskRequest.Result;
+                if(!blnConnectionSuccess)
+                {
+                    connectionErrorMessage = "Please try again.";
+                }
+            }
+            catch(Exception ex)
+            {
+                connectionErrorMessage = ex.Message;
+            }
+            return blnConnectionSuccess;
+        }
+
+        public static async Task<bool> MakeConnectionRequestAsync(string connectionString)
+        {
+            bool blnConnectionSuccess = false;
+            try
+            {
                 using (CrmServiceClient crmSvc = new CrmServiceClient(connectionString))
                 {
                     _serviceProxy = crmSvc.OrganizationServiceProxy;
@@ -34,15 +57,11 @@ namespace Hsl.CognitiveServices.Demo
                     {
                         blnConnectionSuccess = true;
                     }
-                    else
-                    {
-                        connectionErrorMessage = "Please try again.";
-                    }
-                } 
+                }
             }
             catch(Exception ex)
             {
-                connectionErrorMessage = ex.Message;
+                throw ex.InnerException;
             }
             return blnConnectionSuccess;
         }
