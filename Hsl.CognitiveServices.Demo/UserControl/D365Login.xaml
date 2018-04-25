@@ -6,8 +6,8 @@
              xmlns:local="clr-namespace:Hsl.CognitiveServices.Demo.UserControl"
              mc:Ignorable="d" 
              Height="274.013" Width="468.051" Background="White" BorderBrush="Gray" BorderThickness="1px">
-    <!--:DesignHeight="300" d:DesignWidth="300"-->
 
+    <!--#region Main Grid-->
     <Grid Background="Transparent" Margin="0,0,1,3">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -31,6 +31,7 @@
         </Separator>
         <Button Grid.Row="0" Name="btnClose" Width="20" Content="x" TextBlock.Foreground="Gray"   TextBlock.FontSize="15" BorderBrush="White"  Background="White" IsCancel="True" Click="btnClose_Click"  Margin="435,6,9.8,230.6" RenderTransformOrigin="5.724,0.531" Grid.RowSpan="2"/>
 
+        <!--#region CRM Instance Grid-->
         <Grid Visibility="Visible" Name="gridInstanceType" Margin="21,56.6,22.8,62.6" Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="133.852"/>
@@ -47,7 +48,9 @@
             <RadioButton Name="rdoOnLine" GroupName="InstanceType" Content="Online" Checked="InstaceType_Checked" Grid.Column="3" Margin="3,48,29,10"/>
             <Button IsEnabled="False" BorderBrush="LightGray" Name="btnNextLogin" Click="btnNextLogin_Click" Content="Next" RenderTransformOrigin="2.455,3.375" Grid.Column="3" Margin="68,69,0,-60" Grid.Row="1"/>
         </Grid>
+        <!--#endregion -->
 
+        <!--#region OnPremise Login Grid-->
         <Grid Name="gridOnPremiseLogin" Visibility="Hidden" Grid.Row="1" Margin="10,0.6,22.8,6.6" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="13*"/>
@@ -56,7 +59,7 @@
                 <ColumnDefinition Width="0*"/>
             </Grid.ColumnDefinitions>
             <Grid Margin="6,0,1,-6.2" Grid.Column="1">
-                <Grid x:Name="LayoutRoot" Margin="-14,39,12,1.2">
+                <Grid x:Name="LayoutRoot" Margin="-16,39,12,-1.8">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="46.4" />
                         <ColumnDefinition Width="92"/>
@@ -85,13 +88,15 @@
                         <ComboBoxItem IsSelected="True" Content="AFD"/>
                     </ComboBox>
 
-                    <Button BorderBrush="LightGray" Grid.Row="5" Content="Back" Margin="6,10,0,-4" Click="OnPremiseLoginBack_Click" Grid.Column="1" RenderTransformOrigin="0.482,1.783"/>
-                    <Button BorderBrush="LightGray" Grid.Row="5" Content="Login" Margin="9,10,4,-4" Click="OnPremiseLogin_Click" Grid.Column="2" Height="25" VerticalAlignment="Top"/>
-                    <ProgressBar Panel.ZIndex="999" Name="PBOnpremiseLogin" Visibility="Hidden" Foreground="Green" IsIndeterminate="true" Margin="0,0,14,6" Grid.Row="5" HorizontalAlignment="Right" Width="156"  Height="3" VerticalAlignment="Bottom" Grid.Column="3" ></ProgressBar>
+                    <Button BorderBrush="LightGray" Grid.Row="5" Content="Back" Margin="6,9,0,-3" Click="OnPremiseLoginBack_Click" Grid.Column="1" RenderTransformOrigin="0.482,1.783"/>
+                    <Button BorderBrush="LightGray" Grid.Row="5" Content="Login" Margin="9,9,4,-3" Click="OnPremiseLogin_Click" Grid.Column="2" Height="25" VerticalAlignment="Top"/>
+                    <ProgressBar  Height="3" Panel.ZIndex="999" Name="PBOnpremiseLogin" Visibility="Hidden" Foreground="Green" IsIndeterminate="true" Margin="0,0,14,6" Grid.Row="5" HorizontalAlignment="Right" Width="156"   Grid.Column="3" ></ProgressBar>
                 </Grid>
             </Grid>
         </Grid>
+        <!--#endregion -->
 
+        <!--#region OnLine Login Grid-->
         <Grid Name="gridOnLineLogin" Visibility="Hidden" Grid.Row="1" Margin="10,0.6,22.8,6.6" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="13*"/>
@@ -123,12 +128,14 @@
                     <PasswordBox  Grid.Row="2" Grid.Column="1"  Name="txtPasswordOnline"   Margin="7,3,3,0"/>
                     <Button BorderBrush="LightGray" Grid.Row="2" Content="Back" Margin="53,44,12,-38" Click="OnlineLoginBack_Click"/>
                     <Button BorderBrush="LightGray" Grid.Row="2" Content="Login" Margin="5,44,172,-38" Click="OnlineLogin_Click" Grid.Column="1" />
-                    <ProgressBar Panel.ZIndex="999" Name="PBOnlineLogin" Visibility="Hidden" Foreground="Green" IsIndeterminate="true" Margin="0,0,6,38" Grid.Row="3" HorizontalAlignment="Right" Width="156" RenderTransformOrigin="0.5,0.5" Height="3" VerticalAlignment="Bottom" Grid.Column="1">
+                    <ProgressBar   Panel.ZIndex="999" Name="PBOnlineLogin" Visibility="Hidden" Foreground="Green" IsIndeterminate="true" Margin="0,0,6,38" Grid.Row="3" HorizontalAlignment="Right" Width="156" RenderTransformOrigin="0.5,0.5" Height="3" VerticalAlignment="Bottom" Grid.Column="1">
                     </ProgressBar>
                 </Grid>
-
             </Grid>
         </Grid>
+        <!--#endregion -->
 
     </Grid>
+    <!--#endregion -->
+
 </UserControl>

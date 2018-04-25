@@ -22,13 +22,14 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace Hsl.CognitiveServices.Demo.UserControl
 {
     /// <summary>
     /// Interaction logic for FaceIdentify.xaml
     /// </summary>
-    public partial class FaceIdentify : ITabbed, INotifyPropertyChanged
+    public partial class FaceIdentify : ICustomControl, INotifyPropertyChanged
     {
         #region Fields
 
@@ -222,15 +223,17 @@ namespace Hsl.CognitiveServices.Demo.UserControl
             gridIdentifyPerson.Visibility = Visibility.Visible;
         }
 
-        private void BtnTrain_Click(object sender, RoutedEventArgs e)
+        private async void  BtnTrain_Click(object sender, RoutedEventArgs e)
         {
             PBTrainFaceApi.Visibility = Visibility.Visible;
             bool blnTrainingSuccess = false;
             try
             {
-                List<Contact> lstContacts = new List<Contact>();
-                // Get the Contacts Images from CRM.
-                string strContactsImageQuery = @"<fetch mapping='logical' output-format='xml-platform' distinct='false'>
+                await Task.Run(() =>
+                {
+                    List<Contact> lstContacts = new List<Contact>();
+                    // Get the Contacts Images from CRM.
+                    string strContactsImageQuery = @"<fetch mapping='logical' output-format='xml-platform' distinct='false'>
                           <entity name='contact'>
                             <attribute name='fullname'/>
                             <attribute name='contactid'/>
@@ -241,20 +244,21 @@ namespace Hsl.CognitiveServices.Demo.UserControl
                             </filter>
                           </entity>
                         </fetch>";
-                EntityCollection entColContacts = CrmHelper._serviceProxy.RetrieveMultiple(new FetchExpression(strContactsImageQuery));
-                if (entColContacts == null || entColContacts.Entities.Count == 0)
-                {
-                    return;
-                }
-                List<Contact> lstFilteredContacts = entColContacts.Entities
-                    .Select(ent => new Contact
+                    EntityCollection entColContacts = CrmHelper._serviceProxy.RetrieveMultiple(new FetchExpression(strContactsImageQuery));
+                    if (entColContacts == null || entColContacts.Entities.Count == 0)
                     {
-                        FullName = ent.Attributes["fullname"].ToString(),
-                        ImageBytes = ent.Attributes["entityimage"] as byte[],
-                        Id = ent.Attributes["contactid"].ToString()
-                    }).ToList();
-                CreatePersonGroup(lstFilteredContacts);
-                blnTrainingSuccess = true;
+                        return;
+                    }
+                    List<Contact> lstFilteredContacts = entColContacts.Entities
+                        .Select(ent => new Contact
+                        {
+                            FullName = ent.Attributes["fullname"].ToString(),
+                            ImageBytes = ent.Attributes["entityimage"] as byte[],
+                            Id = ent.Attributes["contactid"].ToString()
+                        }).ToList();
+                    CreatePersonGroup(lstFilteredContacts);
+                    blnTrainingSuccess = true;
+                });
             }
             catch (Exception ex)
             {
@@ -383,7 +387,7 @@ namespace Hsl.CognitiveServices.Demo.UserControl
             return groupExists;
         }
 
-        private void UploadImage_Click(object sender, RoutedEventArgs e)
+        private async void UploadImage_Click(object sender, RoutedEventArgs e)
         {
             // Show file picker
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
@@ -393,53 +397,48 @@ namespace Hsl.CognitiveServices.Demo.UserControl
 
             if (result.HasValue && result.Value)
             {
-                PBIdentify.Visibility = Visibility.Visible;
-                btnIdentify.IsEnabled = true;
-                // User picked one image
-                // Clear previous detection and identification results
-                TargetFaces.Clear();
-                var pickedImagePath = dlg.FileName;
-                this.ImagePath = pickedImagePath;
-                var renderingImage = UIHelper.LoadImageAppliedOrientation(pickedImagePath);
-                var imageInfo = UIHelper.GetImageInfoForRendering(renderingImage);
-                SelectedFile = renderingImage;
-                var sw = Stopwatch.StartNew();
-                var faceServiceClient = new FaceServiceClient(this.strSubscriptionKey, this.strEndpoint);
+                    PBIdentify.Visibility = Visibility.Visible;
+                    btnIdentify.IsEnabled = true;
+                    // User picked one image
+                    // Clear previous detection and identification results
+                    TargetFaces.Clear();
+                    var pickedImagePath = dlg.FileName;
+                    this.ImagePath = pickedImagePath;
+                    var renderingImage = UIHelper.LoadImageAppliedOrientation(pickedImagePath);
+                    var imageInfo = UIHelper.GetImageInfoForRendering(renderingImage);
+                    SelectedFile = renderingImage;
+                    var sw = Stopwatch.StartNew();
+                    var faceServiceClient = new FaceServiceClient(this.strSubscriptionKey, this.strEndpoint);
 
-                // Call detection REST API
-                using (var fStream = File.OpenRead(pickedImagePath))
-                {
-                    try
+                    // Call detection REST API
+                    using (var fStream = File.OpenRead(pickedImagePath))
                     {
-                        var taskfaces = Task.Run(async()=> await faceServiceClient.DetectAsync(fStream));
-                        while(!taskfaces.IsCompleted)
+                        try
                         {
-                            taskfaces.Wait();
+                            var taskfaces = await faceServiceClient.DetectAsync(fStream);
+                            var faces = taskfaces.ToArray();
+                            foreach (var face in UIHelper.CalculateFaceRectangleForRendering(faces, MaxImageSize, imageInfo))
+                            {
+                                TargetFaces.Add(face);
+                            }
                         }
-                        var faces = taskfaces.Result.ToArray();
-                    
-                        foreach (var face in UIHelper.CalculateFaceRectangleForRendering(faces, MaxImageSize, imageInfo))
+                        catch (FaceAPIException ex)
                         {
-                            TargetFaces.Add(face);
+                            MessageBox.Show(ex.Message);
                         }
-                    }
-                    catch (FaceAPIException ex)
-                    {
-                        MessageBox.Show(ex.Message);
                     }
                 }
-            }
-            GC.Collect();
+             GC.Collect();
             PBIdentify.Visibility = Visibility.Hidden;
         }
 
-        private void BtnIdentify_Click(object sender, RoutedEventArgs e)
+        private async void BtnIdentify_Click(object sender, RoutedEventArgs e)
         {
             PBIdentify.Visibility = Visibility.Visible;
             try
             {
-                Task<bool> taskIdentify = Task.Run((async () => await IdentifyFaces()));
-                if (taskIdentify.Result)
+                bool blnIdentify =  await IdentifyFaces();
+                if (blnIdentify)
                 {
                     MessageBox.Show("Identification successfully completed");
                 }

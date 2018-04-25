@@ -21,49 +21,49 @@ namespace Hsl.CognitiveServices.Demo
         /// </summary>
         /// <param name="connectionString">Dynamics 365 Connection String</param>
         /// <returns>Service Proxy</returns>
-        public static bool ConnectUsingConnectionString(string connectionString, out string connectionErrorMessage)
+        public static async Task<bool> ConnectUsingConnectionStringAsync(string connectionString, Tuple<string> errorMessage)
         {
             bool blnConnectionSuccess = false;
-            connectionErrorMessage = string.Empty;
+            string connectionErrorMessage = string.Empty;
+            errorMessage = new Tuple<string>(string.Empty);
             try
             {
-                Task<bool> taskRequest=MakeConnectionRequestAsync(connectionString);
-                while(!taskRequest.IsCompleted)
+                blnConnectionSuccess = await MakeConnectionRequestAsync(connectionString);
+                if (!blnConnectionSuccess)
                 {
-                    taskRequest.Wait();
-                }
-                blnConnectionSuccess = taskRequest.Result;
-                if(!blnConnectionSuccess)
-                {
-                    connectionErrorMessage = "Please try again.";
+                    errorMessage = new Tuple<string>("Please try again.");
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                connectionErrorMessage = ex.Message;
+                errorMessage = new Tuple<string>(Task.FromException(ex).Exception.Message);
             }
             return blnConnectionSuccess;
         }
 
-        public static async Task<bool> MakeConnectionRequestAsync(string connectionString)
+        public static Task<bool> MakeConnectionRequestAsync(string connectionString)
         {
-            bool blnConnectionSuccess = false;
-            try
+          Task<bool> taskConnection= Task.Run(()=>
             {
-                using (CrmServiceClient crmSvc = new CrmServiceClient(connectionString))
+                bool blnConnectionSuccess = false;
+                try
                 {
-                    _serviceProxy = crmSvc.OrganizationServiceProxy;
-                    if (_serviceProxy != null)
+                    using (CrmServiceClient crmSvc = new CrmServiceClient(connectionString))
                     {
-                        blnConnectionSuccess = true;
+                        _serviceProxy = crmSvc.OrganizationServiceProxy;
+                        if (_serviceProxy != null)
+                        {
+                            blnConnectionSuccess = true;
+                        }
                     }
                 }
-            }
-            catch(Exception ex)
-            {
-                throw ex.InnerException;
-            }
-            return blnConnectionSuccess;
+                catch (Exception ex)
+                {
+                    throw ex.InnerException;
+                }
+                return  blnConnectionSuccess;
+            });
+            return taskConnection;
         }
     }
 }

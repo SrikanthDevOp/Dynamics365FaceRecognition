@@ -2,13 +2,15 @@
 using System.Linq;
 using System.Windows;
 using System.Configuration;
+using System.Threading.Tasks;
+using System.Windows.Threading;
 
 namespace Hsl.CognitiveServices.Demo.UserControl
 {
     /// <summary>
     /// Interaction logic for D365Login.xaml
     /// </summary>
-    public partial class D365Login: ITabbed
+    public partial class D365Login : ICustomControl
     {
         public D365Login()
         {
@@ -40,6 +42,7 @@ namespace Hsl.CognitiveServices.Demo.UserControl
             gridInstanceType.Visibility = Visibility.Hidden;
         }
 
+
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             CloseInitiated?.Invoke(this, new EventArgs());
@@ -62,86 +65,104 @@ namespace Hsl.CognitiveServices.Demo.UserControl
             btnNextLogin.Visibility = Visibility.Visible;
             gridInstanceType.Visibility = Visibility.Visible;
         }
-        private void OnlineLogin_Click(object sender, RoutedEventArgs e)
+        private async void OnlineLogin_Click(object sender, RoutedEventArgs e)
         {
-            if (txtServerOnline.Text.Equals(string.Empty)
-               || txtUserNameOnline.Text.Equals(string.Empty)
-               || txtPasswordOnline.Password.Equals(string.Empty))
+            try
             {
-                MessageBox.Show("Unable to login, please provide the required details.");
-            }
-            else
-            {
-                PBOnlineLogin.Visibility = Visibility.Visible;
-                string strAuthType = "Office365";
-                string strServerUrl = txtServerOnline.Text;
-
-                AppendOrgnaisationName(ref strServerUrl);
-                string strUserName = txtUserNameOnline.Text;
-                string strPassword = txtPasswordOnline.Password.ToString();
-                string strConnectionString = $"AuthType={strAuthType};Url={strServerUrl};Username={strUserName};Password={strPassword}";
-                string strConStringKeyValue = ConfigurationManager.AppSettings["DynamicsConnectionStringOnline"];
-                if(strConStringKeyValue!= strConnectionString)
+                if (txtServerOnline.Text.Equals(string.Empty)
+                || txtUserNameOnline.Text.Equals(string.Empty)
+                || txtPasswordOnline.Password.Equals(string.Empty))
                 {
-                    UpdateConnectionStringValue(strConnectionString, ConnectionType.Online);
-                }
-                string strErrorMessage;
-                if (CrmHelper.ConnectUsingConnectionString(strConnectionString, out strErrorMessage))
-                {
-                    var parentWindow = Window.GetWindow(this) as MainWindow;
-                    parentWindow.dockPanel.Children.Clear();
-                    FaceIdentify cntrlFaceIdentify = new FaceIdentify();
-                    cntrlFaceIdentify.CloseInitiated+= new Close(parentWindow.ClosePanel);
-                    parentWindow.dockPanel.Children.Add(cntrlFaceIdentify);
-                    parentWindow.dockPanel.Visibility = Visibility.Visible;
+                    MessageBox.Show("Unable to login, please provide the required details.");
                 }
                 else
                 {
-                    MessageBox.Show("Unable to login :" + "\r\n" + strErrorMessage);
+                    string strAuthType = "Office365";
+                    string strServerUrl = txtServerOnline.Text;
+                    AppendOrgnaisationName(ref strServerUrl);
+                    string strUserName = txtUserNameOnline.Text;
+                    string strPassword = txtPasswordOnline.Password.ToString();
+                    string strConnectionString = $"AuthType={strAuthType};Url={strServerUrl};Username={strUserName};Password={strPassword}";
+                    string strConStringKeyValue = ConfigurationManager.AppSettings["DynamicsConnectionStringOnline"];
+                    if (strConStringKeyValue != strConnectionString)
+                    {
+                        UpdateConnectionStringValue(strConnectionString, ConnectionType.Online);
+                    }
+                    PBOnlineLogin.Visibility = Visibility.Visible;
+                    Tuple<string> strErrorMessage = new Tuple<string>(string.Empty);
+                    bool connectionResponse = await Task.Run(()=>CrmHelper.ConnectUsingConnectionStringAsync(strConnectionString, strErrorMessage));
+                    if (connectionResponse)
+                    {
+                        var parentWindow = Window.GetWindow(this) as MainWindow;
+                        parentWindow.dockPanel.Children.Clear();
+                        FaceIdentify cntrlFaceIdentify = new FaceIdentify();
+                        cntrlFaceIdentify.CloseInitiated += new Close(parentWindow.ClosePanel);
+                        parentWindow.dockPanel.Children.Add(cntrlFaceIdentify);
+                        parentWindow.dockPanel.Visibility = Visibility.Visible;
+                        PBOnlineLogin.Visibility = Visibility.Hidden;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Unable to login :" + "\r\n" + strErrorMessage.Item1);
+                        PBOnlineLogin.Visibility = Visibility.Hidden;
+                    }
                 }
             }
-            PBOnlineLogin.Visibility = Visibility.Hidden;
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
         private void OnPremiseLogin_Click(object sender, RoutedEventArgs e)
         {
-            if (txtServerOnPremise.Text.Equals(string.Empty)
-                || txtDomainOnPremise.Text.Equals(string.Empty)
-                || txtUserNameOnPremise.Text.Equals(string.Empty)
-                || txtPasswordOnPremise.Password.Equals(string.Empty))
+            try
             {
-                MessageBox.Show("Unable to login, please provide required details.");
-            }
-            else
-            {
-                PBOnpremiseLogin.Visibility = Visibility.Visible;
-                string strAuthType = cmbAuthType.SelectedValue.ToString();
-                string strServerUrl = txtServerOnPremise.Text;
-                AppendOrgnaisationName(ref strServerUrl);
-                string strDomain = txtDomainOnPremise.Text;
-                string strUserName = txtUserNameOnPremise.Text;
-                string strPassword = txtPasswordOnPremise.Password.ToString();
-                string strConnectionString = $"AuthType={strAuthType};Url={strServerUrl};Domain={strDomain};Username={strUserName};Password={strPassword}";
-                string strConStringKeyValue = ConfigurationManager.AppSettings["DynamicsConnectionStringOnPremise"];
-                if (strConStringKeyValue != strConnectionString)
+                if (txtServerOnPremise.Text.Equals(string.Empty)
+                    || txtDomainOnPremise.Text.Equals(string.Empty)
+                    || txtUserNameOnPremise.Text.Equals(string.Empty)
+                    || txtPasswordOnPremise.Password.Equals(string.Empty))
                 {
-                    UpdateConnectionStringValue(strConnectionString, ConnectionType.OnPremise);
-                }
-                string strErrorMessage;
-                if (CrmHelper.ConnectUsingConnectionString(strConnectionString, out strErrorMessage))
-                {
-                    var parentWindow = Window.GetWindow(this) as MainWindow;
-                    parentWindow.dockPanel.Children.Clear();
-                    FaceIdentify cntrlFaceIdentify = new FaceIdentify();
-                    cntrlFaceIdentify.CloseInitiated += new Close(parentWindow.ClosePanel);
-                    parentWindow.dockPanel.Children.Add(cntrlFaceIdentify);
-                    parentWindow.dockPanel.Visibility = Visibility.Visible;
+                    MessageBox.Show("Unable to login, please provide required details.");
                 }
                 else
                 {
-                    MessageBox.Show("Unable to login :" + "\r\n" + strErrorMessage);
+
+                    string strAuthType = cmbAuthType.SelectedValue.ToString();
+                    string strServerUrl = txtServerOnPremise.Text;
+                    AppendOrgnaisationName(ref strServerUrl);
+                    string strDomain = txtDomainOnPremise.Text;
+                    string strUserName = txtUserNameOnPremise.Text;
+                    string strPassword = txtPasswordOnPremise.Password.ToString();
+                    string strConnectionString = $"AuthType={strAuthType};Url={strServerUrl};Domain={strDomain};Username={strUserName};Password={strPassword}";
+                    string strConStringKeyValue = ConfigurationManager.AppSettings["DynamicsConnectionStringOnPremise"];
+                    if (strConStringKeyValue != strConnectionString)
+                    {
+                        UpdateConnectionStringValue(strConnectionString, ConnectionType.OnPremise);
+                    }
+                    PBOnpremiseLogin.Visibility = Visibility.Visible;
+                    Tuple<string> strErrorMessage = new Tuple<string>(string.Empty);
+                    Task<bool> TaskConnection = Task.Run((async () => await CrmHelper.ConnectUsingConnectionStringAsync(strConnectionString, strErrorMessage)));
+                    if (TaskConnection.Result)
+                    {
+                        var parentWindow = Window.GetWindow(this) as MainWindow;
+                        parentWindow.dockPanel.Children.Clear();
+                        FaceIdentify cntrlFaceIdentify = new FaceIdentify();
+                        cntrlFaceIdentify.CloseInitiated += new Close(parentWindow.ClosePanel);
+                        parentWindow.dockPanel.Children.Add(cntrlFaceIdentify);
+                        parentWindow.dockPanel.Visibility = Visibility.Visible;
+                        PBOnpremiseLogin.Visibility = Visibility.Hidden;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Unable to login :" + "\r\n" + strErrorMessage);
+                        PBOnpremiseLogin.Visibility = Visibility.Hidden;
+                    }
                 }
             }
-            PBOnpremiseLogin.Visibility = Visibility.Hidden;
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
         private void UpdateConnectionStringValue(string strConnectionString, ConnectionType typeCon)
         {
@@ -170,10 +191,10 @@ namespace Hsl.CognitiveServices.Demo.UserControl
             try
             {
                 string strConnectionString;
-                if(typeCon.Equals(ConnectionType.Online))
+                if (typeCon.Equals(ConnectionType.Online))
                 {
                     strConnectionString = ConfigurationManager.AppSettings["DynamicsConnectionStringOnline"];
-                    if(string.IsNullOrEmpty(strConnectionString))
+                    if (string.IsNullOrEmpty(strConnectionString))
                     {
                         return;
                     }
@@ -184,19 +205,22 @@ namespace Hsl.CognitiveServices.Demo.UserControl
                         string strValue = strParam.Split('=')[1];
                         if (strKey.Equals("Url"))
                         {
-                            if(strValue.LastIndexOf('/')!=0)
+                            if (strValue.LastIndexOf('/') != 0)
                             {
                                 txtServerOnline.Text = strValue.Substring(0, strValue.LastIndexOf('/'));
-                            }else
+                            }
+                            else
                             {
                                 txtServerOnline.Text = strValue;
                             }
-                        }else
+                        }
+                        else
                         {
                             if (strKey.Equals("Username"))
                             {
                                 txtUserNameOnline.Text = strValue;
-                            }else
+                            }
+                            else
                             {
                                 if (strKey.Equals("Password"))
                                 {
@@ -224,7 +248,8 @@ namespace Hsl.CognitiveServices.Demo.UserControl
                             if (strValue.LastIndexOf('/') != 0)
                             {
                                 txtServerOnPremise.Text = strValue.Substring(0, strValue.LastIndexOf('/'));
-                            }else
+                            }
+                            else
                             {
                                 txtServerOnPremise.Text = strValue;
                             }
@@ -240,9 +265,10 @@ namespace Hsl.CognitiveServices.Demo.UserControl
                                 if (strKey.Equals("Password"))
                                 {
                                     txtPasswordOnPremise.Password = strValue;
-                                }else
+                                }
+                                else
                                 {
-                                    if(strKey.Equals("Domain"))
+                                    if (strKey.Equals("Domain"))
                                     {
                                         txtDomainOnPremise.Text = strValue;
                                     }
@@ -253,9 +279,9 @@ namespace Hsl.CognitiveServices.Demo.UserControl
                 }
 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -289,7 +315,7 @@ namespace Hsl.CognitiveServices.Demo.UserControl
     }
     public enum ConnectionType
     {
-        Online=0,
-        OnPremise=1
+        Online = 0,
+        OnPremise = 1
     }
 }

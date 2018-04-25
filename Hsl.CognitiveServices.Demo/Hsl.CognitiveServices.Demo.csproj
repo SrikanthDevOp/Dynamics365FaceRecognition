@@ -145,7 +145,7 @@
     <Compile Include="UserControl\FaceIdentify.xaml.cs">
       <DependentUpon>FaceIdentify.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControl\ITabbed.cs" />
+    <Compile Include="UserControl\ICustomControl.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

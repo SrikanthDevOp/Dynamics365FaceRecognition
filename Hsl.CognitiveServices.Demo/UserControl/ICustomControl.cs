@@ -5,8 +5,8 @@ using System.Text;
 
 namespace Hsl.CognitiveServices.Demo
 {
-    public delegate void Close(ITabbed sender, EventArgs e);
-    public interface ITabbed
+    public delegate void Close(ICustomControl sender, EventArgs e);
+    public interface ICustomControl
     {
         /// <summary>
         /// This event will be fired from user control and will be listened
