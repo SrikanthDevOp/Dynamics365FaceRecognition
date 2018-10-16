@@ -1,150 +1,70 @@
-D:\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\bin\Debug\Hsl.CognitiveServices.Demo.exe.config
-D:\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\bin\Debug\Hsl.CognitiveServices.Demo.exe
-D:\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\bin\Debug\Hsl.CognitiveServices.Demo.pdb
-D:\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\obj\Debug\Hsl.CognitiveServices.Demo.csprojResolveAssemblyReference.cache
-D:\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\obj\Debug\MainWindow.g.cs
-D:\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\obj\Debug\UserControl\D365Login.g.cs
-D:\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\obj\Debug\App.g.cs
-D:\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\obj\Debug\Hsl.CognitiveServices.Demo_MarkupCompile.cache
-D:\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\obj\Debug\Hsl.CognitiveServices.Demo_MarkupCompile.lref
-D:\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\obj\Debug\App.baml
-D:\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\obj\Debug\MainWindow.baml
-D:\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\obj\Debug\UserControl\D365Login.baml
-D:\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\obj\Debug\Hsl.CognitiveServices.Demo.g.resources
-D:\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\obj\Debug\Hsl.CognitiveServices.Demo.Properties.Resources.resources
-D:\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\obj\Debug\Hsl.CognitiveServices.Demo.csproj.GenerateResource.Cache
-D:\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\obj\Debug\Hsl.CognitiveServices.Demo.csproj.CoreCompileInputs.cache
-D:\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\obj\Debug\Hsl.CognitiveServices.Demo.exe
-D:\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\obj\Debug\Hsl.CognitiveServices.Demo.pdb
-C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\obj\Debug\MainWindow.g.cs
-C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\obj\Debug\UserControl\D365Login.g.cs
-C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\obj\Debug\UserControl\FaceIdentify.g.cs
-C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\obj\Debug\App.g.cs
-C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\obj\Debug\Hsl.CognitiveServices.Demo_MarkupCompile.cache
-C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\obj\Debug\Hsl.CognitiveServices.Demo_MarkupCompile.lref
-C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\bin\Debug\Hsl.CognitiveServices.Demo.exe.config
-C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\bin\Debug\Hsl.CognitiveServices.Demo.exe
-C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\bin\Debug\Hsl.CognitiveServices.Demo.pdb
-C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Crm.Sdk.Proxy.dll
-C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.IdentityModel.Clients.ActiveDirectory.dll
-C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.IdentityModel.Clients.ActiveDirectory.Platform.dll
-C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Xrm.Sdk.Deployment.dll
-C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Xrm.Sdk.dll
-C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Xrm.Sdk.Workflow.dll
-C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Xrm.Tooling.Connector.dll
-C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Xrm.Tooling.CrmConnectControl.dll
-C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Xrm.Tooling.Ui.Styles.dll
-C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Xrm.Tooling.WebResourceUtility.dll
-C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Crm.Sdk.Proxy.xml
-C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.IdentityModel.Clients.ActiveDirectory.xml
-C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.IdentityModel.Clients.ActiveDirectory.Platform.xml
-C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Xrm.Sdk.xml
-C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Xrm.Sdk.Deployment.xml
-C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Xrm.Sdk.Workflow.xml
-C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Xrm.Tooling.Connector.xml
-C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Xrm.Tooling.CrmConnectControl.xml
-C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Xrm.Tooling.WebResourceUtility.xml
-C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\obj\Debug\App.baml
-C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\obj\Debug\MainWindow.baml
-C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\obj\Debug\UserControl\D365Login.baml
-C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\obj\Debug\UserControl\FaceIdentify.baml
-C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\obj\Debug\Hsl.CognitiveServices.Demo.g.resources
-C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\obj\Debug\Hsl.CognitiveServices.Demo.Properties.Resources.resources
-C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\obj\Debug\Hsl.CognitiveServices.Demo.csproj.GenerateResource.Cache
-C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\obj\Debug\Hsl.CognitiveServices.Demo.exe
-C:\Users\psrikanth\Documents\Visual Studio 2015\Projects\Hsl.CognitiveServices.Demo\Hsl.CognitiveServices.Demo\obj\Debug\Hsl.CognitiveServices.Demo.pdb
-D:\Projects\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Hsl.CognitiveServices.Demo.exe.config
-D:\Projects\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Hsl.CognitiveServices.Demo.exe
-D:\Projects\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Hsl.CognitiveServices.Demo.pdb
-D:\Projects\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Crm.Sdk.Proxy.dll
-D:\Projects\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.IdentityModel.Clients.ActiveDirectory.dll
-D:\Projects\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.IdentityModel.Clients.ActiveDirectory.Platform.dll
-D:\Projects\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.ProjectOxford.Common.dll
-D:\Projects\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.ProjectOxford.Face.dll
-D:\Projects\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Xrm.Sdk.Deployment.dll
-D:\Projects\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Xrm.Sdk.dll
-D:\Projects\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Xrm.Sdk.Workflow.dll
-D:\Projects\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Xrm.Tooling.Connector.dll
-D:\Projects\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Xrm.Tooling.CrmConnectControl.dll
-D:\Projects\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Xrm.Tooling.Ui.Styles.dll
-D:\Projects\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Xrm.Tooling.WebResourceUtility.dll
-D:\Projects\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Newtonsoft.Json.dll
-D:\Projects\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\System.Net.Http.Extensions.dll
-D:\Projects\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\System.Net.Http.Primitives.dll
-D:\Projects\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Crm.Sdk.Proxy.xml
-D:\Projects\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.IdentityModel.Clients.ActiveDirectory.xml
-D:\Projects\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.IdentityModel.Clients.ActiveDirectory.Platform.xml
-D:\Projects\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Xrm.Sdk.xml
-D:\Projects\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Xrm.Sdk.Deployment.xml
-D:\Projects\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Xrm.Sdk.Workflow.xml
-D:\Projects\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Xrm.Tooling.Connector.xml
-D:\Projects\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Xrm.Tooling.CrmConnectControl.xml
-D:\Projects\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Xrm.Tooling.WebResourceUtility.xml
-D:\Projects\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Newtonsoft.Json.xml
-D:\Projects\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\System.Net.Http.Extensions.xml
-D:\Projects\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\System.Net.Http.Primitives.xml
-D:\Projects\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\obj\Debug\Hsl.CognitiveServices.Demo.csproj.App.config
-D:\Projects\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\obj\Debug\Hsl.CognitiveServices.Demo.csprojResolveAssemblyReference.cache
-D:\Projects\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\obj\Debug\MainWindow.g.cs
-D:\Projects\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\obj\Debug\UserControl\D365Login.g.cs
-D:\Projects\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\obj\Debug\UserControl\FaceIdentify.g.cs
-D:\Projects\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\obj\Debug\App.g.cs
-D:\Projects\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\obj\Debug\Hsl.CognitiveServices.Demo_MarkupCompile.cache
-D:\Projects\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\obj\Debug\Hsl.CognitiveServices.Demo_MarkupCompile.lref
-D:\Projects\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\obj\Debug\App.baml
-D:\Projects\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\obj\Debug\MainWindow.baml
-D:\Projects\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\obj\Debug\UserControl\D365Login.baml
-D:\Projects\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\obj\Debug\UserControl\FaceIdentify.baml
-D:\Projects\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\obj\Debug\Hsl.CognitiveServices.Demo.g.resources
-D:\Projects\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\obj\Debug\Hsl.CognitiveServices.Demo.Properties.Resources.resources
-D:\Projects\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\obj\Debug\Hsl.CognitiveServices.Demo.csproj.GenerateResource.Cache
-D:\Projects\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\obj\Debug\Hsl.CognitiveServices.Demo.csproj.CoreCompileInputs.cache
-D:\Projects\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\obj\Debug\Hsl.CognitiveServices.Demo.exe
-D:\Projects\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\obj\Debug\Hsl.CognitiveServices.Demo.pdb
-D:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Hsl.CognitiveServices.Demo.exe.config
-D:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Hsl.CognitiveServices.Demo.exe
-D:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Hsl.CognitiveServices.Demo.pdb
-D:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Crm.Sdk.Proxy.dll
-D:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.IdentityModel.Clients.ActiveDirectory.dll
-D:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.IdentityModel.Clients.ActiveDirectory.Platform.dll
-D:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.ProjectOxford.Common.dll
-D:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.ProjectOxford.Face.dll
-D:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Xrm.Sdk.Deployment.dll
-D:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Xrm.Sdk.dll
-D:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Xrm.Sdk.Workflow.dll
-D:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Xrm.Tooling.Connector.dll
-D:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Xrm.Tooling.CrmConnectControl.dll
-D:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Xrm.Tooling.Ui.Styles.dll
-D:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Xrm.Tooling.WebResourceUtility.dll
-D:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Newtonsoft.Json.dll
-D:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\System.Net.Http.Extensions.dll
-D:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\System.Net.Http.Primitives.dll
-D:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Crm.Sdk.Proxy.xml
-D:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.IdentityModel.Clients.ActiveDirectory.xml
-D:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.IdentityModel.Clients.ActiveDirectory.Platform.xml
-D:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Xrm.Sdk.xml
-D:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Xrm.Sdk.Deployment.xml
-D:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Xrm.Sdk.Workflow.xml
-D:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Xrm.Tooling.Connector.xml
-D:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Xrm.Tooling.CrmConnectControl.xml
-D:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Xrm.Tooling.WebResourceUtility.xml
-D:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Newtonsoft.Json.xml
-D:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\System.Net.Http.Extensions.xml
-D:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\System.Net.Http.Primitives.xml
-D:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\obj\Debug\Hsl.CognitiveServices.Demo.csproj.App.config
-D:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\obj\Debug\MainWindow.g.cs
-D:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\obj\Debug\UserControl\D365Login.g.cs
-D:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\obj\Debug\UserControl\FaceIdentify.g.cs
-D:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\obj\Debug\App.g.cs
-D:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\obj\Debug\Hsl.CognitiveServices.Demo_MarkupCompile.cache
-D:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\obj\Debug\Hsl.CognitiveServices.Demo_MarkupCompile.lref
-D:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\obj\Debug\App.baml
-D:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\obj\Debug\MainWindow.baml
-D:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\obj\Debug\UserControl\D365Login.baml
-D:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\obj\Debug\UserControl\FaceIdentify.baml
-D:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\obj\Debug\Hsl.CognitiveServices.Demo.g.resources
-D:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\obj\Debug\Hsl.CognitiveServices.Demo.Properties.Resources.resources
-D:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\obj\Debug\Hsl.CognitiveServices.Demo.csproj.GenerateResource.Cache
-D:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\obj\Debug\Hsl.CognitiveServices.Demo.exe
-D:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\obj\Debug\Hsl.CognitiveServices.Demo.pdb
-D:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\obj\Debug\Hsl.CognitiveServices.Demo.csprojResolveAssemblyReference.cache
+E:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Hsl.CognitiveServices.Demo.exe.config
+E:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Hsl.CognitiveServices.Demo.exe
+E:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Hsl.CognitiveServices.Demo.pdb
+E:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Crm.Sdk.Proxy.dll
+E:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.IdentityModel.Clients.ActiveDirectory.dll
+E:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.ProjectOxford.Common.dll
+E:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.ProjectOxford.Face.dll
+E:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Rest.ClientRuntime.dll
+E:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Win32.Primitives.dll
+E:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Xrm.Sdk.Deployment.dll
+E:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Xrm.Sdk.dll
+E:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Xrm.Sdk.Workflow.dll
+E:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Xrm.Tooling.Connector.dll
+E:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Xrm.Tooling.CrmConnectControl.dll
+E:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Xrm.Tooling.Ui.Styles.dll
+E:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Xrm.Tooling.WebResourceUtility.dll
+E:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Newtonsoft.Json.dll
+E:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\System.AppContext.dll
+E:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\System.Console.dll
+E:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\System.Diagnostics.DiagnosticSource.dll
+E:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\System.Diagnostics.Tracing.dll
+E:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\System.Globalization.Calendars.dll
+E:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\System.IO.Compression.dll
+E:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\System.IO.Compression.ZipFile.dll
+E:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\System.IO.dll
+E:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\System.IO.FileSystem.dll
+E:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\System.IO.FileSystem.Primitives.dll
+E:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\System.Net.Http.dll
+E:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\System.Net.Http.Extensions.dll
+E:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\System.Net.Http.Primitives.dll
+E:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\System.Net.Sockets.dll
+E:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\System.Reflection.dll
+E:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\System.Runtime.dll
+E:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\System.Runtime.Extensions.dll
+E:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\System.Runtime.InteropServices.dll
+E:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\System.Runtime.InteropServices.RuntimeInformation.dll
+E:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\System.Security.Cryptography.Algorithms.dll
+E:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\System.Security.Cryptography.Encoding.dll
+E:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\System.Security.Cryptography.Primitives.dll
+E:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\System.Security.Cryptography.X509Certificates.dll
+E:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\System.Xml.ReaderWriter.dll
+E:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Crm.Sdk.Proxy.xml
+E:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.IdentityModel.Clients.ActiveDirectory.xml
+E:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Xrm.Sdk.xml
+E:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Xrm.Sdk.Deployment.xml
+E:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Xrm.Sdk.Workflow.xml
+E:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Xrm.Tooling.Connector.xml
+E:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Xrm.Tooling.CrmConnectControl.xml
+E:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.Xrm.Tooling.WebResourceUtility.xml
+E:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Newtonsoft.Json.xml
+E:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\System.Diagnostics.DiagnosticSource.xml
+E:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\System.Net.Http.Extensions.xml
+E:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\System.Net.Http.Primitives.xml
+E:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\obj\Debug\Hsl.CognitiveServices.Demo.csprojResolveAssemblyReference.cache
+E:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\obj\Debug\MainWindow.g.cs
+E:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\obj\Debug\UserControl\D365Login.g.cs
+E:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\obj\Debug\UserControl\FaceIdentify.g.cs
+E:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\obj\Debug\App.g.cs
+E:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\obj\Debug\Hsl.CognitiveServices.Demo_MarkupCompile.cache
+E:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\obj\Debug\Hsl.CognitiveServices.Demo_MarkupCompile.lref
+E:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\obj\Debug\App.baml
+E:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\obj\Debug\MainWindow.baml
+E:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\obj\Debug\UserControl\D365Login.baml
+E:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\obj\Debug\UserControl\FaceIdentify.baml
+E:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\obj\Debug\Hsl.CognitiveServices.Demo.g.resources
+E:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\obj\Debug\Hsl.CognitiveServices.Demo.Properties.Resources.resources
+E:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\obj\Debug\Hsl.CognitiveServices.Demo.csproj.GenerateResource.Cache
+E:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\obj\Debug\Hsl.CognitiveServices.Demo.exe
+E:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\obj\Debug\Hsl.CognitiveServices.Demo.pdb
+E:\Srikanth\Projects\Git\Dynamics365FaceRecognition\Hsl.CognitiveServices.Demo\bin\Debug\Microsoft.IdentityModel.Clients.ActiveDirectory.WindowsForms.dll

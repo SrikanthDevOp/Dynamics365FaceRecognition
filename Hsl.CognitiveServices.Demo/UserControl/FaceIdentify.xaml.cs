@@ -10,19 +10,11 @@ using System.Configuration;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
 using System.Threading.Tasks;
-using System.Web;
-using System.Web.UI;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using System.Windows.Threading;
 
 namespace Hsl.CognitiveServices.Demo.UserControl
 {
@@ -239,11 +231,11 @@ namespace Hsl.CognitiveServices.Demo.UserControl
                             <attribute name='contactid'/>
                             <attribute name='entityimage'/>
                             <filter type='and'>
-                            <condition attribute='statecode' operator='eq' value='0'/>
                             <condition attribute='entityimage' operator='not-null'/>
                             </filter>
                           </entity>
                         </fetch>";
+           
                     EntityCollection entColContacts = CrmHelper._serviceProxy.RetrieveMultiple(new FetchExpression(strContactsImageQuery));
                     if (entColContacts == null || entColContacts.Entities.Count == 0)
                     {

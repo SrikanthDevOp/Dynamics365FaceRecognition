@@ -8,6 +8,7 @@ using Microsoft.Xrm.Tooling.Connector;
 using System.ServiceModel;
 using System.Runtime.Serialization;
 using Microsoft.Xrm.Sdk.Client;
+using System.Net;
 
 namespace Hsl.CognitiveServices.Demo
 {
@@ -48,6 +49,7 @@ namespace Hsl.CognitiveServices.Demo
                 bool blnConnectionSuccess = false;
                 try
                 {
+                    ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
                     using (CrmServiceClient crmSvc = new CrmServiceClient(connectionString))
                     {
                         _serviceProxy = crmSvc.OrganizationServiceProxy;
